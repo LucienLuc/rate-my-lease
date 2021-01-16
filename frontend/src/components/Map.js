@@ -1,32 +1,86 @@
+import React, { Component } from 'react';
 import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
+import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
+import Item from 'antd/lib/list/Item';
+import { render } from 'react-dom';
 
-const PseudoMap = ({leases}) => {
-  //leases is an array of [lease] objects
-  leases = Object.values(leases)
-  let counter = 0;
-  return (
-    <div>
-      <h1>
-        Leases
-      </h1>
-      <ul>
+const mapStyles = {
+  width: '100%',
+  height: '90%'
+}
+
+// const containerStyle = {
+//   //position:,  
+//   width: '100%',
+//   height: '90%'
+// }
+
+export class PseudoMap extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker : {},
+      selectedPlace: {}
+    };
+    this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
+    this.onMouseclick = this.onMouseclick.bind(this);
+  }
+
+  onMouseoverMarker(props, marker, e) {
+    // console.log(props)
+    // console.log(marker)
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+  }
+  onMouseclick(props, marker, e) {
+
+  }
+  render() {
+    return (
+      <div>
+        <h1>
+          bruh
+        </h1>
+        <Map
+          google={this.props.google}
+          zoom={12}
+          style={mapStyles}
+          //containerStyle = {containerStyle}
+          initialCenter={
+            {
+              lat: 38.5382,
+              lng: -121.7617
+            }
+          }
+        >
         {
-          leases.map(lease => {
-            counter++;
-            return (
-              <li key = {lease.id}> 
-                <h2 key = {lease.id}> {"lease number " + counter + ": " + lease.name} </h2>
-                <AddressInfo key = {lease.id} lease = {lease}/>
-              </li>
-            );
+          this.props.locations.map(marker => {
+            return(
+              <Marker key={marker.name} position={{lat : marker.lat, lng: marker.long}} onMouseover={this.onMouseoverMarker}/>
+            )
           })
         }
-      </ul>
-    </div>
-  )
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible = {this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
+        </Map>  
+      </div>
+    )
+  }
 }
 
 
 //once google api is implemented, we will be able to call this a real map
-export default PseudoMap; //change the name of this later
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyA64M8sHmnYd5QJUd3HufNTl1PKh0FJI4k'
+})(PseudoMap); //change the name of this later

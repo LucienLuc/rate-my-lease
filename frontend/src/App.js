@@ -6,17 +6,39 @@ import AddressInfo from './components/addressinfo'
 import Map from './components/Map'
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      query : {}
-    }
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     query : {}
+  //   }
+  // }
 
-  changeQuery = (newQuery) => {
-    this.setState({query : newQuery.data})
-    console.log(this.state.query)
-  }
+  // changeQuery = (newQuery) => {
+  //   this.setState({query : newQuery.data})
+  //   console.log(this.state.query)
+  // }
+  query = [{
+    address: "24991 Pam",
+    lat: 38.5382,
+    long: -121.7617,
+    reviews: [{
+        rating: 1,
+        date: Date(),
+        body: "body"
+    }],
+    avg_rating: 2,
+    leases: [{
+      name: "poosh",
+      date: Date(),
+      price: 2,
+      bed: 1,
+      bath: 1,
+      contact: {
+          phone: 123123,
+          email: "PushSubscription.gmail",
+      },
+      body: "body"}]
+}]
 
   render() {
     return (
@@ -26,7 +48,7 @@ class App extends React.Component {
         </header>
 
         <div>
-          <Map leases={this.state.query}/>
+          <Map locations={ /*this.state.*/ this.query}/>
         </div>
       </div>
     )
