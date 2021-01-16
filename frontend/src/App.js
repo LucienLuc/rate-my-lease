@@ -15,6 +15,7 @@ class App extends React.Component {
 
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
+    console.log(this.state.query)
   }
 
   render() {

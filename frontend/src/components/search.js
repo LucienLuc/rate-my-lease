@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from "react"
+import axios from 'axios'
+
 import {Button, Form, Input, Rate, Select} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
-import axios from 'axios'
 import "./search.css"
+
+import {BASE_URL} from '../Constants'
 
 const Search = ({callback}) => {
 
@@ -19,7 +22,7 @@ const Search = ({callback}) => {
                 }
             }
             axios
-                .get('http://localhost:8000/api/location', config)
+                .get(BASE_URL + '/api/location', config)
                 .then(response => {
                     callback(response)
                 })
@@ -40,7 +43,7 @@ const Search = ({callback}) => {
             }
 
             axios
-                .get('http://localhost:8000/api/location', config)
+                .get(BASE_URL + '/api/location', config)
                 .then(response => {
                     callback(response)
                 })
@@ -65,9 +68,9 @@ const Search = ({callback}) => {
             onFinish={onFinish}>
                 <Form.Item name = "selection" className = 'select'>
                     <Select onSelect = {handleSelect}>
-                    <Option value={0}>Search Addresses</Option>
-                    <Option value={1}>Search Leases</Option>
-                </Select>
+                        <Select.Option value={0}>Search Addresses</Select.Option>
+                        <Select.Option value={1}>Search Leases</Select.Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item
                 className="address"
