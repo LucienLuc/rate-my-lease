@@ -15,17 +15,29 @@ const Search = ({callback}) => {
         // if get address is checked
         if(values.selection === 0)
         {
-            const config = {
-                params: {
-                    address: values.address,
-                    selection: values.selection
-                }
+            
+            if(values.address === '' || values.address === undefined)
+            {
+                axios
+                    .get('http://localhost:8000/api/location-all')
+                    .then(response => {
+                        callback(response)
+                    })
             }
-            axios
-                .get(BASE_URL + '/api/location', config)
-                .then(response => {
-                    callback(response)
-                })
+            else
+            {
+                const config = {
+                    params: {
+                        address: values.address,
+                        selection: values.selection
+                    }
+                }
+                axios
+                    .get('http://localhost:8000/api/location', config)
+                    .then(response => {
+                        callback(response)
+                    })
+            }
         }
         // otherwise, get lease
         else
