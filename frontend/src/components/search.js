@@ -19,7 +19,7 @@ const Search = ({callback}) => {
             if(values.address === '' || values.address === undefined)
             {
                 axios
-                    .get('http://localhost:8000/api/location-all')
+                    .get(BASE_URL + '/api/location-all')
                     .then(response => {
                         callback(response)
                     })
@@ -33,7 +33,7 @@ const Search = ({callback}) => {
                     }
                 }
                 axios
-                    .get('http://localhost:8000/api/location', config)
+                    .get(BASE_URL + '/api/location', config)
                     .then(response => {
                         callback(response)
                     })
