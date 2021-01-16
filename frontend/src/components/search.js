@@ -6,6 +6,7 @@ import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import "./search.css"
 
 import {BASE_URL} from '../Constants'
+import {GOOGLE_API_KEY} from '../Constants'
 
 const Search = ({callback}) => {
 

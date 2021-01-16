@@ -3,7 +3,11 @@ import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
 import Item from 'antd/lib/list/Item';
+import {Button} from 'antd'
 import { render } from 'react-dom';
+
+import {GOOGLE_API_KEY} from '../Constants'
+
 
 const mapStyles = {
   width: '100%',
@@ -41,6 +45,7 @@ export class PseudoMap extends Component {
   onMouseclick(props, marker, e) {
 
   }
+
   render() {
     return (
       <div>
@@ -82,5 +87,5 @@ export class PseudoMap extends Component {
 
 //once google api is implemented, we will be able to call this a real map
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyA64M8sHmnYd5QJUd3HufNTl1PKh0FJI4k'
+  apiKey: GOOGLE_API_KEY
 })(PseudoMap); //change the name of this later
