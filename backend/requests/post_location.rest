@@ -2,5 +2,5 @@ POST http://localhost:8000/api/location
 content-type: application/json
 
 {
-    "address": "1100 Olive Dr, Davis, CA 95616"
+    "address": "2949 Portage Bay W, Davis, CA 95616"
 }
