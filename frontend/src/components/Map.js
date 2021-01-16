@@ -4,6 +4,7 @@ import LeaseInfo from './LeaseInfo';
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
 import Item from 'antd/lib/list/Item';
 import { render } from 'react-dom';
+import { GOOGLE_API_KEY } from '../Constants';
 
 const mapStyles = {
   width: '100%',
@@ -21,26 +22,31 @@ export class PseudoMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showingAddressBar: false,
       showingInfoWindow: false,
-      activeMarker : {},
       selectedPlace: {}
     };
     this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
     this.onMouseclick = this.onMouseclick.bind(this);
   }
 
-  onMouseoverMarker(props, marker, e) {
-    // console.log(props)
-    // console.log(marker)
+  onMouseoverMarker( location) {
+    console.log(location)
     this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
+      selectedPlace: location,
       showingInfoWindow: true
     })
   }
-  onMouseclick(props, marker, e) {
 
+  onMouseclick(location) {
+    console.log(location)
+    this.setState({
+      selectedPlace: location,
+      showingInfoWindow: false,
+      showingAddressBar: true
+    })
   }
+
   render() {
     return (
       <div>
@@ -62,7 +68,7 @@ export class PseudoMap extends Component {
         {
           this.props.locations.map(marker => {
             return(
-              <Marker key={marker.name} position={{lat : marker.lat, lng: marker.long}} onMouseover={this.onMouseoverMarker}/>
+              <Marker key={marker.name} position={{lat : marker.lat, lng: marker.long}} onMouseover={this.onMouseoverMarker} onClick = {this.onMouseclick}/>
             )
           })
         }
@@ -82,5 +88,5 @@ export class PseudoMap extends Component {
 
 //once google api is implemented, we will be able to call this a real map
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyA64M8sHmnYd5QJUd3HufNTl1PKh0FJI4k'
+  apiKey: "AIzaSyD9TL6alUjbdbEL8Z8OsP9R5YllS-HWO9A"
 })(PseudoMap); //change the name of this later
