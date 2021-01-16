@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/review
+content-type: application/json
+
+{
+    "address": "1100 Olive Dr, Davis, CA 95616",
+    "reviews": {
+        "rating": 3.5,
+        "body": "okay ig"
+    }
+}

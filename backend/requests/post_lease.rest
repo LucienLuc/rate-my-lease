@@ -1,0 +1,15 @@
+POST http://localhost:8000/api/lease
+content-type: application/json
+
+{
+    "address": "1580 Jade St, Davis, CA 95616",
+    "name": "mama",
+    "price": 1000,
+    "bed": 4,
+    "bath": 4,
+    "contact": {
+        "phone": 33333333,
+        "email": "mama@ucdavis.edu"
+    },
+    "body": "gimme"
+}
