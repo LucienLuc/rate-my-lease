@@ -1,4 +1,5 @@
 import {Table} from "antd"
+import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
     //this func will be used to return information aboaut the lease
@@ -52,7 +53,7 @@ const LeaseInfo = ({leases}) => {
     // body: "body"
 
     return(
-      <div>
+      <div className = 'allData'>
         <Table dataSource = {leases} columns = {columns}/>
       </div>
     )

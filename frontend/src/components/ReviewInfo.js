@@ -3,7 +3,7 @@ const ReviewInfo = ({review}) => {
 
 
     return(
-        <div>
+        <div className = "Comment">
             <Comment 
                 datetime = {review.date}
                 content = {review.body}

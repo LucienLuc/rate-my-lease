@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import LeaseInfo from "./LeaseInfo"
 import ReviewInfo from './ReviewInfo'
+import './reviewinfo.css'
 
 const AddressInfo = ({location}) => {
     
