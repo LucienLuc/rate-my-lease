@@ -68,6 +68,7 @@ class App extends React.Component {
     return (
       <LoadScript
       googleMapsApiKey= {GOOGLE_API_KEY}
+      libraries = {['places']}
       >
       <div>
         <header>
