@@ -17,8 +17,29 @@ const client = new Client({})
 const google_url = process.env.GOOGLE_API_KEY
 
 app.get('/api/location-all', (request, response) => {
-    Location.find({}, (error, docs) => {
-        response.json(docs).end()
+    Location.find({}).then(locations => {
+        Lease.find({}).then(leases => {
+            let config = JSON.parse(JSON.stringify(locations))
+            for(lease_element in leases) {
+                for(location_element in config)
+                {
+                    if(config[location_element].leases === undefined)
+                    {
+                        config[location_element].leases = []
+                    }
+                    
+                    if(leases[lease_element].location.equals(config[location_element]._id))
+                    {
+                        config[location_element].leases.push(leases[lease_element])
+                    }
+                }
+            }
+            response.json(config).end()
+        })
+        .catch(error => {
+            console.log(error)
+            response.status(500).end()
+        })
     })
 })
 
@@ -120,7 +141,7 @@ app.get('/api/location', (request, response) => {
                                 }
                             }
                         }
-                        response.json(config)
+                        response.json(config).end()
                     })
                     .catch(error => {
                         console.log(error)

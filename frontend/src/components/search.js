@@ -27,6 +27,15 @@ class Search extends React.Component {
         this.onFinish = this.onFinish.bind(this)
     }
 
+    //get all addresses on page load
+    componentDidMount() {
+        axios
+        .get(BASE_URL + '/api/location-all', {})
+        .then(response => {
+            this.props.callback(response)
+        })
+    }
+
     onFinish(values) {
         // if get address is checked
         if(values.selection === 0)
@@ -87,7 +96,7 @@ class Search extends React.Component {
 
     onPlaceChanged() {
         if (this.autocomplete !== null) {
-          console.log(this.autocomplete.getPlace())
+        //   console.log(this.autocomplete.getPlace())
           this.setState({addressValue: this.autocomplete.getPlace().formatted_address})
         } else {
           console.log('Autocomplete is not loaded yet!')

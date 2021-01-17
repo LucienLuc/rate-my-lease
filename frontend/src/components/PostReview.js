@@ -56,6 +56,7 @@ class PostReview extends React.Component {
                     visible={this.state.isModalVisible} 
                     onCancel={this.handleCancel}
                     footer={[]}>
+                    <Input disabled value ={'ADDRESS HERE'} addonBefore ={'Review for'}/>
                     <Form
                         onFinish={this.onFinish}>
 
