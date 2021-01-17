@@ -48,7 +48,7 @@ class App extends React.Component {
         </header>
 
         <div>
-          <Map locations={ /*this.state.*/ this.query}/>
+          {/* <Map locations={this.state. this.query}/> */}
         </div>
       </div>
     )
