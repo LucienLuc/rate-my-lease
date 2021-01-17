@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
-import {GOOGLE_API_KEY} from '../Constants'
 import Item from 'antd/lib/list/Item';
 import {Button} from 'antd'
 import { render } from 'react-dom';
-
 import {GOOGLE_API_KEY} from '../Constants'
 
 
@@ -37,10 +35,11 @@ export class PseudoMap extends Component {
   onMouseoverMarker(props, marker, e) {
     // console.log(props)
     // console.log(marker)
+    // console.log(e)
     this.setState({
+      showingInfoWindow: true,
       selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
+      activeMarker: marker
     })
   }
   onMouseclick(props, marker, e) {
@@ -67,8 +66,9 @@ export class PseudoMap extends Component {
         >
         {
           this.props.locations.map(marker => {
+            console.log(marker.name);
             return(
-              <Marker key={marker.name} position={{lat : marker.lat, lng: marker.long}} onMouseover={this.onMouseoverMarker}/>
+              <Marker key={marker.name} position={{lat : marker.lat, lng : marker.long}} onMouseover={this.onMouseoverMarker}/>
             )
           })
         }
