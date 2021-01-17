@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'antd/dist/antd.css'
 
-import Search from './components/search'
-import AddressInfo from './components/addressinfo'
+import Search from './components/Search'
+import AddressInfo from './components/Addressinfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
 
@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   query = [{
-    address: "24991 Pam",
+    address: "1 Shields Ave, Davis, CA 95616",
     lat: 38.5382,
     long: -121.7617,
     reviews: [{
@@ -32,7 +32,7 @@ class App extends React.Component {
         date: Date(),
         body: "body"
     }],
-    avg_rating: 2,
+    avg_rating: 2.3,
     leases: [{
       name: "poosh",
       date: Date(),

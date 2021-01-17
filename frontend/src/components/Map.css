@@ -4,7 +4,10 @@
 }
 
 .infobox{
-    width : 60px;
+    clear:both;
+    min-width : 80px;
+    min-height : 60px;
     font-size : 7px;
+    text-aligh: center;
     background-color: white;
 }

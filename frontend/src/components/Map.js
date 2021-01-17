@@ -1,12 +1,12 @@
 import React, { Component} from 'react';
-import AddressInfo from './addressinfo';
+import AddressInfo from './Addressinfo';
 import LeaseInfo from './LeaseInfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
 import Item from 'antd/lib/list/Item';
 import {Drawer} from "antd"
 import { render } from 'react-dom';
 import {GOOGLE_API_KEY} from '../Constants'
-import "./Map.css"
+import "./map.css"
 
 
 const containerStyle = {
@@ -78,7 +78,8 @@ class PseudoMap extends Component {
           >
             <div className = "infobox">
               <h1>
-                {this.state.currentLocation.address}
+                {this.state.currentLocation.address} Rating:  
+                {this.state.currentLocation.avg_rating}/5
               </h1>
             </div>
           </InfoBox>
