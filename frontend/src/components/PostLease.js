@@ -54,7 +54,7 @@ class PostLease extends React.Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Open
+                    Post a Lease!
                 </Button>
                 <Modal 
                     title="Post a lease" 
