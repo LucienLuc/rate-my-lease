@@ -1,4 +1,10 @@
 .allData{
+    margin-top: 5px;
     border : 3px solid blue;
-    background-color: #91d5ff
+    background-color: #e6f7ff;
+    padding : 3px;
+}
+
+.ant-table-content{
+    background-color: #e6f7ff;
 }

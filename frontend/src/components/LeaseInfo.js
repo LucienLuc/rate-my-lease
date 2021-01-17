@@ -2,43 +2,51 @@ import {Table} from "antd"
 import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
-    //this func will be used to return information aboaut the lease
+  console.log("jajajjajjajaja");
+  //console.log(leases);
+  leases.map(element => {
+    const date = new Date(element.date);
+    element.date = date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+  })
 
-    const columns = [
-      {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name'
-      }, {
-        title: 'Date',
-        dataIndex: 'date',
-        key: 'date'
-      }, {
-        title: 'Price Listing',
-        dataIndex: 'price',
-        key: 'price'
-      }, {
-        title: 'Beds',
-        dataIndex: 'bed',
-        key: 'bed'
-      }, {
-        title: 'Baths',
-        dataIndex: 'bath',
-        key: 'bath'
-      }, {
-        title: 'Phone',
-        dataIndex: 'contact/phone',
-        key: 'contact/phone'
-      }, {
-        title: 'Email',
-        dataIndex: 'contact/email',
-        key: 'contact/email'
-      }, {
-        title: 'Description',
-        dataIndex: 'body',
-        key: 'body'
-      }
-    ];
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    }, {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    }, {
+      title: 'Price Listing',
+      dataIndex: 'price',
+      key: 'price',
+    }, {
+      title: 'Beds',
+      dataIndex: 'bed',
+      key: 'bed',
+    }, {
+      title: 'Baths',
+      dataIndex: 'bath',
+      key: 'bath',
+    }, {
+      title: 'Phone',
+      dataIndex: ['contact','phone'],
+      width : 90,
+      key: 'contact/phone',
+    }, {
+      title: 'Email',
+      dataIndex: ['contact','email'],
+      width : 150,
+      key: 'contact/email',
+    }, {
+      title: 'Description',
+      dataIndex: 'body',
+      width : 1000,
+      key: 'body'
+    }
+  ];
 
 
     // name: "Jiu",
@@ -53,8 +61,8 @@ const LeaseInfo = ({leases}) => {
     // body: "body"
 
     return(
-      <div className = 'allData'>
-        <Table dataSource = {leases} columns = {columns}/>
+      <div>
+        <Table className = 'allData' dataSource = {leases} columns = {columns} pagination = {false}/>
       </div>
     )
   

@@ -59,6 +59,7 @@ class PseudoMap extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div id = "map">
         <GoogleMap
@@ -92,7 +93,7 @@ class PseudoMap extends Component {
             closable={false}
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
-            width={720}>
+            width={1000}>
                 <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>
