@@ -3,7 +3,7 @@ import axios from 'axios'
 import 'antd/dist/antd.css'
 
 import Search from './components/Search'
-import AddressInfo from './components/Addressinfo'
+import AddressInfo from './components/AddressInfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
 import PostLease from './components/PostLease'
@@ -31,7 +31,7 @@ class App extends React.Component {
 
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
-    console.log(this.state.query);
+    // console.log(this.state.query);
   }
 
   render() {
