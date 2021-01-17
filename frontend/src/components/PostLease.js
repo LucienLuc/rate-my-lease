@@ -1,7 +1,7 @@
 import React from "react"
 import axios from 'axios'
 
-import {Modal, Button, Form, Input, InputNumber, Divider} from "antd"
+import {Modal, Button, Form, Input, InputNumber, Divider, Spin} from "antd"
 import { BASE_URL } from "../Constants";
 
 class PostLease extends React.Component {
@@ -9,10 +9,12 @@ class PostLease extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            isModalVisible: false
+            isModalVisible: false,
+            loading: false
         }
 
         this.showModal = this.showModal.bind(this)
+        this.toggle = this.toggle.bind(this)
 
         this.onFinish = this.onFinish.bind(this)
         this.handleCancel = this.handleCancel.bind(this)
@@ -22,11 +24,17 @@ class PostLease extends React.Component {
         this.setState({isModalVisible: true})
     }
 
+    toggle(value) {
+        this.setState({loading: value})
+    }
+
     handleCancel() {
         this.setState({isModalVisible: false})
     }
 
     onFinish(values) {
+        this.toggle(true)
+
         const config = {
             address: this.props.location.address,
             name: values.name,
@@ -44,6 +52,9 @@ class PostLease extends React.Component {
             .post(BASE_URL + '/api/lease', config)
             .then(response => {
                 console.log('lease sent!')
+                this.toggle(false)
+                this.props.callback()
+                this.handleCancel()
             })
             .catch(error => {
                 console.log(error)
@@ -120,7 +131,7 @@ class PostLease extends React.Component {
                         <Form.Item style={{float: "right", margin: '5px', position: "relative"}}>
                             <Button 
                                 type="primary" 
-                                htmlType="submit" 
+                                htmlType="submit"
                             >
                                     Submit
                             </Button>
@@ -134,6 +145,7 @@ class PostLease extends React.Component {
                         </Button>
                         </div>
                     </Form>
+                    <Spin spinning={this.state.loading}></Spin>
                 </Modal>
             </div>
         )
