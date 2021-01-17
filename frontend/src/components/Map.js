@@ -32,7 +32,7 @@ const PseudoMap = (props) =>  {
   //   this.onMouseclick = this.onMouseclick.bind(this);
   // }
 
-  onMouseoverMarker(props, marker, e) {
+  const onMouseoverMarker = (props, marker, e) => {
     // console.log(props)
     // console.log(marker)
     // console.log(e)
@@ -50,12 +50,11 @@ const PseudoMap = (props) =>  {
       showingAddressBar: true
     })
   }
-  
-  console.log(props.google);
+
   
   return (
       <div>
-        <h1>
+        {/* <h1>
           bruh
         </h1>
         <>{console.log(props)}</>
@@ -86,13 +85,11 @@ const PseudoMap = (props) =>  {
               <h1>{this.state.selectedPlace.name}</h1>
             </div>
           </InfoWindow>
-        </Map>  
+        </Map>   */}
       </div>
     )
   }
 
 
 //once google api is implemented, we will be able to call this a real map
-export default GoogleApiWrapper({
-  apiKey: GOOGLE_API_KEY
-})(PseudoMap); //change the name of this later
+export default PseudoMap
