@@ -67,6 +67,8 @@ const AddressInfo = ({location}) => {
         
         <>
         <h2> Leases </h2>
+                {console.log("addressinfo.js"),
+                console.log(location.leases)}
             <PostLease location={location} callback={sentLease}/>
             <LeaseInfo leases = {location.leases}/>
         </>

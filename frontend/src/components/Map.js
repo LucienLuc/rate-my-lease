@@ -40,8 +40,6 @@ class PseudoMap extends Component {
   }
 
   handleHover(location){
-    console.log("hovering over");
-    console.log(location);
     this.setState({
       currentLocation : location,
       messageVisible: true,
@@ -59,7 +57,6 @@ class PseudoMap extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div id = "map">
         <GoogleMap
@@ -70,6 +67,8 @@ class PseudoMap extends Component {
           { /* Child components, such as markers, info windows, etc. */ 
             this.props.locations.map(marker => {
               return (
+                console.log(marker.date),
+                console.log("markkkkkkkkkkkker"),
                 <Marker id = {marker.address} key ={marker.address} position = {{lat: marker.lat, lng: marker.long}} onClick = {() => this.handleClick(marker) } onMouseOver = {() => this.handleHover(marker) }/>
               )}
             )
@@ -94,6 +93,8 @@ class PseudoMap extends Component {
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
             width={1000}>
+              {console.log("mapp.js"),
+                console.log(this.state.currentLocation)}
                 <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>

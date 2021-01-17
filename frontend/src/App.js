@@ -49,6 +49,8 @@ class App extends React.Component {
         </header>
 
         <div>
+        {console.log("Apppppppppppppppppppp.js"),
+                console.log(this.state.query)}
           <Map locations={this.state.query}/>
         </div>
       </div>

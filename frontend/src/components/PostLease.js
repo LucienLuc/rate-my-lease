@@ -6,7 +6,7 @@ import { BASE_URL } from "../Constants";
 import './post.css';
 
 class PostLease extends React.Component {
-
+    
     constructor(props){
         super(props);
         this.state = {
