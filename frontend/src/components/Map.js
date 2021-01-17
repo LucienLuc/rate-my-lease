@@ -25,6 +25,7 @@ class PseudoMap extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.handleBarClose = this.handleBarClose.bind(this);
+    this.handleHoverExit = this.handleHoverExit.bind(this);
   }
 
   handleClick(location){
@@ -56,6 +57,13 @@ class PseudoMap extends Component {
     })
   }
 
+  handleHoverExit(){
+    console.log('stopped hovering over');
+    this.setState({
+      messageVisible: false
+    })
+  }
+
   render() {
     return (
       <div id = "map">
@@ -67,9 +75,13 @@ class PseudoMap extends Component {
           { /* Child components, such as markers, info windows, etc. */ 
             this.props.locations.map(marker => {
               return (
-                console.log(marker.date),
-                console.log("markkkkkkkkkkkker"),
-                <Marker id = {marker.address} key ={marker.address} position = {{lat: marker.lat, lng: marker.long}} onClick = {() => this.handleClick(marker) } onMouseOver = {() => this.handleHover(marker) }/>
+                <Marker id = {marker.address} 
+                key ={marker.address} 
+                position = {{lat: marker.lat, lng: marker.long}} 
+                onClick = {() => this.handleClick(marker) } 
+                onMouseOver = {() => this.handleHover(marker)} 
+                onMouseOut = {this.handleHoverExit}
+                />
               )}
             )
           
