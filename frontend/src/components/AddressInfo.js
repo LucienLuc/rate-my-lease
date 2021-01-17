@@ -64,7 +64,7 @@ const AddressInfo = ({location}) => {
         <h2> Reviews </h2>
         <PostReview location={location}/>
         <>{ location.reviews.map( review => {
-            console.log(review);
+            //console.log(review);
             return(
                 <ReviewInfo review = {review}/>
             )

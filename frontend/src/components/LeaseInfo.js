@@ -2,7 +2,7 @@ import {Table} from "antd"
 import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
-  console.log("jajajjajjajaja");
+  //console.log("jajajjajjajaja");
   //console.log(leases);
   leases.map(element => {
     const date = new Date(element.date);
