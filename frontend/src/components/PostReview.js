@@ -2,7 +2,6 @@ import React from "react"
 import axios from 'axios'
 
 import {Modal, Button, Form, Rate, Input} from "antd"
-import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import { BASE_URL } from "../Constants";
 
 class PostReview extends React.Component {
@@ -57,6 +56,7 @@ class PostReview extends React.Component {
                     visible={this.state.isModalVisible} 
                     onCancel={this.handleCancel}
                     footer={[]}>
+                    <Input disabled value ={'ADDRESS HERE'} addonBefore ={'Review for'}/>
                     <Form
                         onFinish={this.onFinish}>
 

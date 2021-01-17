@@ -3,9 +3,10 @@ import axios from 'axios'
 import 'antd/dist/antd.css'
 
 import Search from './components/Search'
-import AddressInfo from './components/Addressinfo'
+import AddressInfo from './components/addressinfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
+import PostLease from './components/PostLease'
 
 import { LoadScript } from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from './Constants'
@@ -20,7 +21,6 @@ class App extends React.Component {
 
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
-    console.log(this.state.query)
   }
 
   query = [{
@@ -84,6 +84,9 @@ class App extends React.Component {
 
         <div>
           <PostReview/>
+        </div>
+        <div>
+          <PostLease/>
         </div>
       </div>
       </LoadScript>
