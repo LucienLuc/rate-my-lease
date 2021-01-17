@@ -1,0 +1,10 @@
+#map{
+    margin-top: 55px;
+    position: absolute;
+}
+
+.infobox{
+    width : 60px;
+    font-size : 4.9px;
+    background-color: white;
+}

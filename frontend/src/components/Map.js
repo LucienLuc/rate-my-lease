@@ -6,12 +6,13 @@ import Item from 'antd/lib/list/Item';
 import {Button} from 'antd'
 import { render } from 'react-dom';
 import {GOOGLE_API_KEY} from '../Constants'
+import "./Map.css"
 
 
 const containerStyle = {
   //position:,  
-  width: '400px',
-  height: '400px'
+  width: '100vw',
+  height: '100vh'
 }
 
 class PseudoMap extends Component {
@@ -43,6 +44,7 @@ class PseudoMap extends Component {
 
   render() {
     return (
+      <div id = "map">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{lat: 38.5382,lng: -121.7617}}
@@ -57,13 +59,14 @@ class PseudoMap extends Component {
           
           }
           <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
-            <div>
+            <div className = "infobox">
               <h1>
                 {this.state.currentLocation.address}
               </h1>
             </div>
           </InfoBox>
         </GoogleMap>
+      </div>
     )
   }
 }
