@@ -9,17 +9,17 @@ import Map from './components/Map'
 import {GOOGLE_API_KEY} from './Constants'
 
 class App extends React.Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     query : {}
-  //   }
-  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      query : {}
+    }
+  }
 
-  // changeQuery = (newQuery) => {
-  //   this.setState({query : newQuery.data})
-  //   console.log(this.state.query)
-  // }
+  changeQuery = (newQuery) => {
+    this.setState({query : newQuery.data})
+    console.log(this.state.query)
+  }
   query = [{
     address: "24991 Pam",
     lat: 38.5382,

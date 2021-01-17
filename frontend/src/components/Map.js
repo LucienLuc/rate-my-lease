@@ -8,7 +8,6 @@ import { render } from 'react-dom';
 import {GOOGLE_API_KEY} from '../Constants'
 
 
-
 const containerStyle = {
   //position:,  
   width: '400px',
