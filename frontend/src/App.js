@@ -20,49 +20,50 @@ class App extends React.Component {
     this.setState({query : newQuery.data})
     console.log(this.state.query)
   }
-//   query = [{
-//     address: "24991 Pam",
-//     lat: 38.5382,
-//     long: -121.7617,
-//     reviews: [{
-//         rating: 1,
-//         date: Date(),
-//         body: "body"
-//     }],
-//     avg_rating: 2,
-//     leases: [{
-//       name: "poosh",
-//       date: Date(),
-//       price: 2,
-//       bed: 1,
-//       bath: 1,
-//       contact: {
-//           phone: 123123,
-//           email: "PushSubscription.gmail",
-//       },
-//       body: "body"}]},
-//       {
-//         address: "JAJAJA",
-//         lat: 38.52,
-//         long: -121.7617,
-//         reviews: [{
-//             rating: 1,
-//             date: Date(),
-//             body: "body"
-//         }],
-//         avg_rating: 2,
-//         leases: [{
-//           name: "Jiu",
-//           date: Date(),
-//           price: 2,
-//           bed: 1,
-//           bath: 1,
-//           contact: {
-//               phone: 123123,
-//               email: "PushSubscription.gmail",
-//           },
-//           body: "body"}]
-// }]
+  
+  query = [{
+    address: "24991 Pam",
+    lat: 38.5382,
+    long: -121.7617,
+    reviews: [{
+        rating: 1,
+        date: Date(),
+        body: "body"
+    }],
+    avg_rating: 2,
+    leases: [{
+      name: "poosh",
+      date: Date(),
+      price: 2,
+      bed: 1,
+      bath: 1,
+      contact: {
+          phone: 123123,
+          email: "PushSubscription.gmail",
+      },
+      body: "body"}]},
+      {
+        address: "JAJAJA",
+        lat: 38.52,
+        long: -121.7617,
+        reviews: [{
+            rating: 1,
+            date: Date(),
+            body: "body"
+        }],
+        avg_rating: 2,
+        leases: [{
+          name: "Jiu",
+          date: Date(),
+          price: 2,
+          bed: 1,
+          bath: 1,
+          contact: {
+              phone: 123123,
+              email: "PushSubscription.gmail",
+          },
+          body: "body"}]
+}]
 
   render() {
     return (
