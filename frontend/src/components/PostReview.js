@@ -37,7 +37,7 @@ class PostReview extends React.Component {
         const config = {
             address: this.props.location.address,
             reviews: {
-                body: values.review-body,
+                body: values.review_body,
                 rating: values.rating
             }
         }
@@ -81,7 +81,7 @@ class PostReview extends React.Component {
                             margin: '5px',
                             width: '18%'}}/>
                         <Form.Item
-                        name="review-body"
+                        name="review_body"
                         rules={[{required: true, message: 'Please input a review!'}]}>
                             <Input.TextArea placeholder="Write review here..." rows={7}/>
                         </Form.Item>

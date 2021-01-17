@@ -37,7 +37,7 @@ class PostLease extends React.Component {
                 email: values.email,
                 phone: values.number
             },
-            body: values.lease-body
+            body: values.lease_body
         }
 
         axios
@@ -111,7 +111,7 @@ class PostLease extends React.Component {
                         </Form.Item>
 
                         <Form.Item
-                        name="lease-body"
+                        name="lease_body"
                         rules={[{required: true, message: 'Please input a body!'}]}>
                             <Input.TextArea placeholder="Write any additional info here" rows={5}/>
                         </Form.Item>
