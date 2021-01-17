@@ -1,0 +1,26 @@
+.container {
+    padding-bottom: 20px;
+}
+
+.lease-button {
+    background-color:#46b8ff;
+    color: white;
+}
+
+.lease-button:hover{
+    background-color: white;
+    color: blue;
+    border: 0;
+}
+
+.review-button{
+
+    background-color: #46b8ff;
+    color : white;
+}
+
+.review-button:hover {
+    background-color: white;
+    color: blue;
+    border: 0;
+}

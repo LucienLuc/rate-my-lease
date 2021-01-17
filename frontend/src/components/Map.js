@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import AddressInfo from './AddressInfo';
+import AddressInfo from './addressinfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
 import {Drawer} from "antd"
 import "./map.css"
