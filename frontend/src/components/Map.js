@@ -90,7 +90,7 @@ class PseudoMap extends Component {
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
             width={720}>
-                <h>DOOT</h>
+                <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>
     )
