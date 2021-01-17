@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'antd/dist/antd.css'
+
 import Search from './components/search'
 import AddressInfo from './components/addressinfo'
-import { LoadScript } from '@react-google-maps/api';
 import Map from './components/Map'
+import PostReview from './components/PostReview'
 
+import { LoadScript } from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from './Constants'
 
 class App extends React.Component {
@@ -20,6 +22,7 @@ class App extends React.Component {
     this.setState({query : newQuery.data})
     console.log(this.state.query)
   }
+
   query = [{
     address: "24991 Pam",
     lat: 38.5382,
@@ -79,7 +82,9 @@ class App extends React.Component {
           <Map locations={ /*this.state.*/ this.query} google = {this.google}/>
         </div>
 
-
+        <div>
+          <PostReview/>
+        </div>
       </div>
       </LoadScript>
     )
