@@ -20,11 +20,6 @@ class App extends React.Component {
     }
   }
 
-  changeQuery = (newQuery) => {
-    this.setState({query : newQuery.data})
-    console.log(this.state.query);
-  }
-
   componentDidMount() {
     axios
       .get(BASE_URL + '/api/location-all')
@@ -33,8 +28,11 @@ class App extends React.Component {
           console.log(this.state.query);
       })
   }
-
   
+  changeQuery = (newQuery) => {
+    this.setState({query : newQuery.data})
+    console.log(this.state.query);
+  }
 
   render() {
     return (
