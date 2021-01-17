@@ -50,17 +50,41 @@ class PostReview extends React.Component {
             }
         }
 
-        axios
-            .post(BASE_URL + '/api/review', config)
-            .then(response => {
-                console.log('review sent!')
-                this.toggle(false)
-                this.handleCancel()
-                this.props.callback()
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if(this.props.new === true)
+        {
+            axios
+                .post(BASE_URL + '/api/location', config)
+                .then(response => {
+                    axios
+                    .post(BASE_URL + '/api/review', config)
+                    .then(response => {
+                        console.log('review sent!')
+                        this.toggle(false)
+                        this.handleCancel()
+                        this.props.callback()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+        else
+        {
+            axios
+                .post(BASE_URL + '/api/review', config)
+                .then(response => {
+                    console.log('review sent!')
+                    this.toggle(false)
+                    this.handleCancel()
+                    this.props.callback()
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     }
 
     render() {

@@ -49,17 +49,42 @@ class PostLease extends React.Component {
             body: values.lease_body
         }
 
-        axios
-            .post(BASE_URL + '/api/lease', config)
-            .then(response => {
-                console.log('lease sent!')
-                this.toggle(false)
-                this.props.callback()
-                this.handleCancel()
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if(this.props.new === true)
+        {
+            axios
+                .post(BASE_URL + '/api/location', config)
+                .then(response => {
+                    axios
+                    .post(BASE_URL + '/api/lease', config)
+                    .then(response => {
+                        console.log('lease sent!')
+                        this.toggle(false)
+                        this.props.callback()
+                        this.handleCancel()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        }
+        else
+        {
+            axios
+                .post(BASE_URL + '/api/lease', config)
+                .then(response => {
+                    console.log('lease sent!')
+                    this.toggle(false)
+                    this.props.callback()
+                    this.handleCancel()
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     }
 
     render() {
