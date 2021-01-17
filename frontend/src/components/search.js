@@ -9,12 +9,8 @@ import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
 import { Autocomplete } from "@react-google-maps/api"
 
-// const ScriptLoaded = require("../../docs/ScriptLoaded").default
-
 class Search extends React.Component {
 
-    // const [isAddressSearch, setAddressSearch] = useState(true)
-    // const [addressValue, setAddressValue] = useState(null);
     constructor(props){
         super(props);
         this.state = {
