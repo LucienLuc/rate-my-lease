@@ -21,37 +21,40 @@ class Search extends React.Component {
             isAddressSearch: true,
             addressValue: ''
         }
+        this.handleSelect = this.handleSelect.bind(this)
+
         this.autocomplete = null
 
         this.onLoad = this.onLoad.bind(this)
         this.onPlaceChanged = this.onPlaceChanged.bind(this)
+
+        this.onFinish = this.onFinish.bind(this)
     }
 
     onFinish(values) {
         // if get address is checked
         if(values.selection === 0)
         {
-            
-            if(values.address === '' || values.address === undefined)
+            if(this.state.addressValue === '' || this.state.addressValue === undefined)
             {
                 axios
                     .get(BASE_URL + '/api/location-all')
                     .then(response => {
-                        callback(response)
+                        this.props.callback(response)
                     })
             }
             else
             {
                 const config = {
                     params: {
-                        address: values.address,
+                        address: this.state.addressValue,
                         selection: values.selection
                     }
                 }
                 axios
                     .get(BASE_URL + '/api/location', config)
                     .then(response => {
-                        callback(response)
+                        this.props.callback(response)
                     })
             }
         }
@@ -60,7 +63,7 @@ class Search extends React.Component {
         {
             const config = {
                 params: {
-                    address: values.address,
+                    address: this.state.addressValue,
                     selection: values.selection,
                     min: values.min,
                     max: values.max,
@@ -73,7 +76,7 @@ class Search extends React.Component {
             axios
                 .get(BASE_URL + '/api/location', config)
                 .then(response => {
-                    callback(response)
+                    this.props.callback(response)
                 })
         }
     }
@@ -83,8 +86,6 @@ class Search extends React.Component {
     }
 
     onLoad(autocomplete) {
-        console.log('autocomplete: ', autocomplete)
-    
         this.autocomplete = autocomplete
     }
 
@@ -126,7 +127,7 @@ class Search extends React.Component {
                         <Input size="default" placeholder="Address" value = {this.state.addressValue} onChange = {(e) => this.setState({addressValue: e.target.value})}addonBefore={<HomeOutlined/>}/>
                     </Autocomplete>
                 </Form.Item>
-                {!this.isAddressSearch &&
+                {!this.state.isAddressSearch &&
                 <div>
                 <Form.Item
                 className="minPrice"
