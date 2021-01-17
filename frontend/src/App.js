@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'antd/dist/antd.css'
 
-import Search from './components/search'
+import Search from './components/Search'
 import AddressInfo from './components/addressinfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
@@ -20,7 +20,6 @@ class App extends React.Component {
 
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
-    console.log(this.state.query)
   }
 
   query = [{
