@@ -93,7 +93,6 @@ class PostLease extends React.Component {
                         label="Price"
                         rules={[{required: true, message: 'Please input a price!'}]}>
                             <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
-                            {/* <p style = {{position: 'relative', float: 'left', margin: '5px 8px'}}>per month</p> */}
                         </Form.Item>
                         <p style = {{float: 'left', margin: '5px 8px'}}>per month</p>
                         <Form.Item
