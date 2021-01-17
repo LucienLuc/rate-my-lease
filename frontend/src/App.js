@@ -37,7 +37,28 @@ class App extends React.Component {
           phone: 123123,
           email: "PushSubscription.gmail",
       },
-      body: "body"}]
+      body: "body"}]},
+      {
+        address: "JAJAJA",
+        lat: 38.52,
+        long: -121.7617,
+        reviews: [{
+            rating: 1,
+            date: Date(),
+            body: "body"
+        }],
+        avg_rating: 2,
+        leases: [{
+          name: "Jiu",
+          date: Date(),
+          price: 2,
+          bed: 1,
+          bath: 1,
+          contact: {
+              phone: 123123,
+              email: "PushSubscription.gmail",
+          },
+          body: "body"}]
 }]
 
   render() {
