@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
 import axios from 'axios'
 
-import {Button, Form, Input, Alert, Select, Tooltip} from "antd"
+import {Button, Form, Input, message, Select, Tooltip} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import "./search.css"
 
@@ -33,7 +33,6 @@ class Search extends React.Component {
 
         //if did not select place from google autocomplete
         if (!this.state.selectedValidPlace && this.state.addressValue != '') {
-            console.log('here')
             return
         }
 
@@ -83,6 +82,14 @@ class Search extends React.Component {
             axios
                 .get(BASE_URL + '/api/location', config)
                 .then(response => {
+                    if(response.data.length === 0) {
+                        message.error({
+                            content: 'No results. Try again with different filters.',
+                            style: {
+                                marginTop: '60px'
+                            }
+                        })
+                    }
                     this.props.callback(response)
                 })
         }
@@ -127,7 +134,8 @@ class Search extends React.Component {
                 ["baths"]: -1,
                 ["rating"]: -1
             }}
-            onFinish={this.onFinish}>
+            onFinish={this.onFinish}
+            >
                 <Form.Item name = "selection" className = 'select'>
                     <Select onSelect = {this.handleSelect}>
                         <Select.Option value={0}>Search Reviews and Leases</Select.Option>
