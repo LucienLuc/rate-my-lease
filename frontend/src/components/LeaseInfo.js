@@ -53,7 +53,7 @@ const LeaseInfo = ({leases}) => {
 
     return(
       <div>
-        <Table className = 'allData' dataSource = {leases} columns = {columns} pagination = {false}/>
+        <Table className = 'allData' dataSource = {leases} columns = {columns}/>
       </div>
     )
   
