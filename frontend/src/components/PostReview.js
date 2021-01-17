@@ -35,7 +35,7 @@ class PostReview extends React.Component {
 
     onFinish(values) {
         const config = {
-            address: this.props.address,
+            address: this.props.location.address,
             reviews: {
                 body: values.review-body,
                 rating: values.rating
@@ -63,7 +63,7 @@ class PostReview extends React.Component {
                     visible={this.state.isModalVisible} 
                     onCancel={this.handleCancel}
                     footer={[]}>
-                    <Input disabled value ={'ADDRESS HERE'} addonBefore ={'Review for'}/>
+                    <Input disabled value ={this.props.location.address} addonBefore ={'Review for'}/>
                     <Divider/>
                     <Form
                         onFinish={this.onFinish}>

@@ -4,8 +4,6 @@ import 'antd/dist/antd.css'
 
 import Search from './components/Search'
 import Map from './components/Map'
-import PostReview from './components/PostReview'
-import PostLease from './components/PostLease'
 
 import { LoadScript } from '@react-google-maps/api';
 import {BASE_URL} from './Constants'
@@ -49,13 +47,6 @@ class App extends React.Component {
 
         <div>
           <Map locations={this.state.query}/>
-        </div>
-
-        <div>
-          <PostReview/>
-        </div>
-        <div>
-          <PostLease/>
         </div>
       </div>
       </LoadScript>

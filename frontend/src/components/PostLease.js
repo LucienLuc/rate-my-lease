@@ -25,10 +25,10 @@ class PostLease extends React.Component {
     handleCancel() {
         this.setState({isModalVisible: false})
     }
-    //this.props.address
+
     onFinish(values) {
         const config = {
-            address: "2477 Sycamore Ln, Davis, CA 95616",
+            address: this.props.locationaddress,
             name: values.name,
             price: values.price,
             bed: values.bed,
@@ -63,7 +63,7 @@ class PostLease extends React.Component {
                     footer={[]}>
                     <Form
                         onFinish={this.onFinish}>
-                        <Input disabled value ={'ADDRESS HERE'} addonBefore ={'New lease listing for'}/>
+                        <Input disabled value ={this.props.location.address} addonBefore ={'New lease listing for'}/>
                         <Divider> Leaser Information </Divider>
                         <Form.Item
                         name="name"
