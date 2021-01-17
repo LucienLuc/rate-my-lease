@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react"
-import {Rate, Table, notification} from 'antd'
+import {Rate, notification} from 'antd'
 import axios from "axios"
 
 import LeaseInfo from "./LeaseInfo"
@@ -13,12 +13,6 @@ import {BASE_URL} from '../Constants'
 
 
 const AddressInfo = ({location}) => {
-    let isNewLocation = false
-
-    if(location.reviews.length === 0 && location.leases.length === 0)
-    {
-        isNewLocation = true
-    }
 
     const sentReview = () => {
         notification.open({
@@ -35,38 +29,25 @@ const AddressInfo = ({location}) => {
     }
 
     return(
-    <>
-        {isNewLocation &&
-        <div>
-            <h1> {location.address} </h1>
-
-            <h2> Leases </h2>
-            <p> There is no information yet. Be the first to make a lease!</p>
-            <PostLease location={location} callback={sentLease} new={true}/>
-
-            <h2> Reviews </h2>
-            <p> There is no information yet. Be the first to leave a review!</p>
-            <PostReview location={location} callback={sentReview} new={true}/>
-        </div>
-        }
-        {!isNewLocation &&
-        <div>
+    <div>
         <h1>{location.address} <Rate allowHalf disabled defaultValue={location.avg_rating}/> ({location.reviews.length})</h1>
-        
-        <h2> Leases </h2>
-        <PostLease location={location} callback={sentLease} new={false}/>
-        <LeaseInfo leases = {location.leases}/>
-        <br></br>
-        <h2> Reviews </h2>
-        <PostReview location={location} callback={sentReview} new={false}/>
+        <PostReview location={location} callback={sentReview}/>
+
         <>{ location.reviews.map( review => {
-            console.log(review);
+            //console.log(review);
             return(
                 <ReviewInfo review = {review}/>
             )
-        })}</>
-        </div>}
-    </>
+        })}</> 
+        
+        <>
+        <h2> Leases </h2>
+                {console.log("Post.js"),
+                console.log(location.leases)}
+            <PostLease location={location} callback={sentLease}/>
+            <LeaseInfo leases = {location.leases}/>
+        </>
+    </div>
     )
 }
 

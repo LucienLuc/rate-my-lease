@@ -2,11 +2,14 @@ import {Table} from "antd"
 import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
-  console.log("jajajjajjajaja");
-  //console.log(leases);
   leases.map(element => {
     const date = new Date(element.date);
     element.date = date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+    let str = '' + element.contact.phone;
+    let match = str.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if(match){
+      element.contact.phone = '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    }
   })
 
   const columns = [
@@ -33,7 +36,7 @@ const LeaseInfo = ({leases}) => {
     }, {
       title: 'Phone',
       dataIndex: ['contact','phone'],
-      width : 90,
+      width : 200,
       key: 'contact/phone',
     }, {
       title: 'Email',
@@ -47,18 +50,6 @@ const LeaseInfo = ({leases}) => {
       key: 'body'
     }
   ];
-
-
-    // name: "Jiu",
-    // date: Date(),
-    // price: 2,
-    // bed: 1,
-    // bath: 1,
-    // contact: {
-    //     phone: 123123,
-    //     email: "PushSubscription.gmail",
-    // },
-    // body: "body"
 
     return(
       <div>
