@@ -11,13 +11,7 @@ const ReviewInfo = ({review}) => {
     const dayDiff = now.getDate()-r_date.getDate();
     const monthDiff = now.getMonth()-r_date.getMonth();
     const yearDiff = now.getFullYear()- r_date.getFullYear();
-
-    console.log(review.date);
-    console.log("review posted on: "+ new Date(review.date));
-    console.log("now: " + now);
-    console.log("time difference: "+ yearDiff+" years, " + monthDiff + "months, " + dayDiff + "days, " + hourDiff + "hours, " + minDiff + "minutes, " + secDiff + "seconds");
-
-
+    
     if ( yearDiff > 0 ){
         //the year difference is a good size
         if(yearDiff == 1){
@@ -77,7 +71,7 @@ const ReviewInfo = ({review}) => {
             <Comment 
                 datetime = {timeTag} 
                 content = {review.body}
-                author = {review.rating}
+                // author = {review.rating}
             />
 
         </div>

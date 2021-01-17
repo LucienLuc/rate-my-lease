@@ -34,7 +34,7 @@ const AddressInfo = ({location}) => {
         <PostReview location={location} callback={sentReview}/>
 
         <>{ location.reviews.map( review => {
-            console.log(review);
+            //console.log(review);
             return(
                 <ReviewInfo review = {review}/>
             )

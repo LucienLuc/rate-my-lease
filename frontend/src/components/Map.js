@@ -11,41 +11,65 @@ const containerStyle = {
   height: '100vh'
 }
 
+const initialCenter = {
+  lat: 38.5449,
+  long: -121.7405
+}
+
 class PseudoMap extends Component {
 
   constructor(props){
     super(props)
+    
+
     this.state = {
       currentLocation : {},
       barVisible : false,
       messageVisible : false,
-      centerLat: 38.5382,
-      centerLng: -121.7617
+      centerLat: initialCenter.lat,
+      centerLng: initialCenter.long,
+      test:  false
     }
+    
+    this.setState({
+      centerLat: 32.8801,
+      centerLng: -117.2340,
+      test: true
+    })
+  
+    console.log("initial default center: " +this.state.centerLat+" : "+this.state.centerLng + this.state.test)
+    
     this.handleClick = this.handleClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.handleBarClose = this.handleBarClose.bind(this);
     this.handleHoverExit = this.handleHoverExit.bind(this);
+
   }
+
 
   handleClick(location){
     console.log("clicked on");
     console.log(location);
     this.setState({
+      centerLat: location.lat,
+      centerLng: location.long
+    })
+
+    setTimeout(() => {
+    this.setState({
       currentLocation: location,
       messageVisible: false,
       barVisible: true,
-      centerLat: location.lat,
-      centerLng: location.lng
+      
     })
+  }, 100);
+
   }
 
   handleHover(location){
     this.setState({
       currentLocation : location,
       messageVisible: true,
-      centerLat: location.lat,
-      centerLng: location.lng
     })
   }
 
@@ -53,7 +77,9 @@ class PseudoMap extends Component {
     console.log("closed the side bar");
     this.setState({
       messageVisible: true,
-      barVisible: false
+      barVisible: false,
+      centerLat: undefined,
+      centerLng: undefined
     })
   }
 
@@ -69,7 +95,8 @@ class PseudoMap extends Component {
       <div id = "map">
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={{lat: this.state.centerLat, lng: this.state.centerLng}}
+          defaultCenter={{lat: initialCenter.lat, lng: initialCenter.long}}
+          center = {{lat: this.state.centerLat, lng: this.state.centerLng}}
           zoom={14}
         >
           { /* Child components, such as markers, info windows, etc. */ 
@@ -77,16 +104,22 @@ class PseudoMap extends Component {
               return (
                 <Marker id = {marker.address} 
                 key ={marker.address} 
-                position = {{lat: marker.lat, lng: marker.long}} 
+                position = {{lat: marker.lat, lng: marker.long}} //fix here possibly htrowing LatLng error
                 onClick = {() => this.handleClick(marker) } 
                 onMouseOver = {() => this.handleHover(marker)} 
                 onMouseOut = {this.handleHoverExit}
+                onLoad = { map =>
+                  this.setState({
+                    centerLat: undefined,
+                    centerLng: undefined
+                  })
+                }
                 />
               )}
             )
           
           }
-          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} 
+          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} //fix here possibly htrowing LatLng error
           visible = {this.state.messageVisible} 
           options={{ closeBoxURL: ``, enableEventPropagation: true }}
           >
