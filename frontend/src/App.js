@@ -25,19 +25,17 @@ class App extends React.Component {
     axios
       .get(BASE_URL + '/api/location-all')
       .then(response => {
-          // console.log(response)
           this.setState({query: response.data, isLoaded: true})
-          // console.log(this.state.query);
       })
   }
-  
+
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
     // console.log(this.state.query);
   }
 
   render() {
-    if (!this.state.isLoaded) {
+    if(!this.state.isLoaded){
       return null
     }
     return (
