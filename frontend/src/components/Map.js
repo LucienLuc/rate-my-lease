@@ -29,12 +29,12 @@ class PseudoMap extends Component {
   }
 
   handleClick(location){
-    console.log("pee");
+    console.log("clicked on");
     console.log(location);
   }
 
   handleHover(location){
-    console.log("doot");
+    console.log("hovering over");
     console.log(location);
     this.setState({
       currentLocation : location,
@@ -50,7 +50,7 @@ class PseudoMap extends Component {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{lat: 38.5382,lng: -121.7617}}
-          zoom={12}
+          zoom={14}
         >
           { /* Child components, such as markers, info windows, etc. */ 
             this.props.locations.map(marker => {

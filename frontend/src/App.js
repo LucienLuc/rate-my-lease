@@ -78,6 +78,8 @@ class App extends React.Component {
         <div>
           <Map locations={ /*this.state.*/ this.query} google = {this.google}/>
         </div>
+
+
       </div>
       </LoadScript>
     )
