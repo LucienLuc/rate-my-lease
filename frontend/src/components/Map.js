@@ -105,8 +105,6 @@ class PseudoMap extends Component {
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
             width={1000}>
-              {console.log("mapp.js"),
-                console.log(this.state.currentLocation)}
                 <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>

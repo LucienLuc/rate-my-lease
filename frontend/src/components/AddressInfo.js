@@ -19,19 +19,6 @@ const AddressInfo = ({location}) => {
             message: 'Submitted review',
             duration: 4.5
         })
-        // console.log(location.reviews);
-        // location.reviews.push(value.reviews)
-        // const config = {
-        //     params:{
-        //         address: location.address
-        //     }
-        // }
-        // axios
-        //     .get(BASE_URL + '/api/review', config)
-        //     .then(response => {
-        //         location.reviews = response.data
-                
-        //     })
     }
 
     const sentLease = () => {
@@ -39,18 +26,6 @@ const AddressInfo = ({location}) => {
             message: 'Submitted lease',
             duration: 4.5
         })
-       
-        
-        // const config = {
-        //     params:{
-        //         address: location.address
-        //     }
-        // }
-        // axios
-        //     .get(BASE_URL + '/api/location', config)
-        //     .then(response => {
-        //         location.leases = response.data.leases
-        //     })
     }
 
     return(
