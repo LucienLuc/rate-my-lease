@@ -56,7 +56,7 @@ class PostReview extends React.Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Open
+                    Post a Review!
                 </Button>
                 <Modal 
                     title="Post a review" 

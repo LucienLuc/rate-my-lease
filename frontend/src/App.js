@@ -3,9 +3,10 @@ import axios from 'axios'
 import 'antd/dist/antd.css'
 
 import Search from './components/Search'
-import AddressInfo from './components/addressinfo'
+import AddressInfo from './components/Addressinfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
+import PostLease from './components/PostLease'
 
 import { LoadScript } from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from './Constants'
@@ -23,7 +24,7 @@ class App extends React.Component {
   }
 
   query = [{
-    address: "24991 Pam",
+    address: "1 Shields Ave, Davis, CA 95616",
     lat: 38.5382,
     long: -121.7617,
     reviews: [{
@@ -31,7 +32,7 @@ class App extends React.Component {
         date: Date(),
         body: "body"
     }],
-    avg_rating: 2,
+    avg_rating: 2.3,
     leases: [{
       name: "poosh",
       date: Date(),
@@ -83,6 +84,9 @@ class App extends React.Component {
 
         <div>
           <PostReview/>
+        </div>
+        <div>
+          <PostLease/>
         </div>
       </div>
       </LoadScript>
