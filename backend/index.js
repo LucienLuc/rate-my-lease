@@ -298,6 +298,7 @@ app.post('/api/lease', (request, response) => {
             })
             tmpLease.save().then(result => {
                 console.log('sent')
+                response.status(201).end()
             })
         } 
         else 
