@@ -58,7 +58,7 @@ class PseudoMap extends Component {
             )
           
           }
-          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
+          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {this.state.messageVisible} options={{closeBoxURL: ``, enableEventPropagation: true}}>
             <div className = "infobox">
               <h1>
                 {this.state.currentLocation.address}
