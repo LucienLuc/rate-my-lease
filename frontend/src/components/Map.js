@@ -64,20 +64,13 @@ class PseudoMap extends Component {
     })
   }, 100);
 
-    console.log("expected location: " +location.lat +" : " + location.long);
-    console.log("actual location: " +this.state.centerLat +" : " + this.state.centerLng);
-
   }
 
   handleHover(location){
-    console.log("hovering over");
-    console.log(location);
-    //console.log(document.getElementById('google-map'));
     this.setState({
       currentLocation : location,
       messageVisible: true,
     })
-    console.log("actual location: " +this.state.centerLat +" : " + this.state.centerLng);
   }
 
   handleBarClose(){
@@ -98,7 +91,6 @@ class PseudoMap extends Component {
   }
 
   render() {
-    //console.log(this.props);
     return (
       <div id = "map">
         <GoogleMap
@@ -140,6 +132,8 @@ class PseudoMap extends Component {
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
             width={1000}>
+              {console.log("mapp.js"),
+                console.log(this.state.currentLocation)}
                 <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>

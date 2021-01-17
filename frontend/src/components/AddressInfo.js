@@ -56,13 +56,8 @@ const AddressInfo = ({location}) => {
     return(
     <div>
         <h1>{location.address} <Rate allowHalf disabled defaultValue={location.avg_rating}/> ({location.reviews.length})</h1>
-        
-        <h2> Leases </h2>
-        <PostLease location={location}/>
-        <LeaseInfo leases = {location.leases}/>
-        <br></br>
-        <h2> Reviews </h2>
-        <PostReview location={location}/>
+        <PostReview location={location} callback={sentReview}/>
+
         <>{ location.reviews.map( review => {
             //console.log(review);
             return(
@@ -70,7 +65,13 @@ const AddressInfo = ({location}) => {
             )
         })}</> 
         
-        
+        <>
+        <h2> Leases </h2>
+                {console.log("Post.js"),
+                console.log(location.leases)}
+            <PostLease location={location} callback={sentLease}/>
+            <LeaseInfo leases = {location.leases}/>
+        </>
     </div>
     )
 }
