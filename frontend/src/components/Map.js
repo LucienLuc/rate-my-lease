@@ -108,6 +108,12 @@ class PseudoMap extends Component {
                 onClick = {() => this.handleClick(marker) } 
                 onMouseOver = {() => this.handleHover(marker)} 
                 onMouseOut = {this.handleHoverExit}
+                onLoad = { map =>
+                  this.setState({
+                    centerLat: undefined,
+                    centerLng: undefined
+                  })
+                }
                 />
               )}
             )
