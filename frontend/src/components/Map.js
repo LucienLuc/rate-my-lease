@@ -1,98 +1,78 @@
-import React, { Component, useState} from 'react';
+import React, { Component} from 'react';
 import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
-import {Map, Marker, GoogleApiWrapper, InfoWindow, GoogleMap, withScriptjs, withGoogleMap} from 'google-maps-react'
+import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
 import Item from 'antd/lib/list/Item';
 import {Button} from 'antd'
 import { render } from 'react-dom';
 import {GOOGLE_API_KEY} from '../Constants'
 
 
-const mapStyles = {
-  width: '100%',
-  height: '90%'
+
+const containerStyle = {
+  //position:,  
+  width: '400px',
+  height: '400px'
 }
 
-const initialCenter = {
-  lat: 38.5382,
-  lng: -121.7617
-}
-// const containerStyle = {
-//   //position:,  
-//   width: '100%',
-//   height: '90%'
-// }
+class PseudoMap extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      currentLocation : {},
+      barVisible : false,
+      messageVisible : false
+    }
+    this.handleClick = this.handleClick.bind(this);
+    this.handleHover = this.handleHover.bind(this);
+  }
 
-export class PseudoMapContainer extends Component {
+  handleClick(location){
+    console.log("pee");
+    console.log(location);
+  }
 
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     currentLocation: null, 
-  //     sideBarVisible: false, 
-  //     messageVisible: false
-  //   }
-  // }
-
-  onMouseoverMarker(props, marker, e) {
-    // console.log(props)
-    // console.log(marker)
-    // console.log(e)
+  handleHover(location){
+    console.log("doot");
+    console.log(location);
     this.setState({
-      showingInfoWindow: true,
-      selectedPlace: props,
-      activeMarker: marker
+      currentLocation : location,
+      messageVisible: true 
     })
   }
 
-  handleClick(){
-
-  }
-    
-  return (
-    <div>
-      <h1>
-        bruh
-      </h1>
-
-      <Map
-        google={props.google}
-        zoom={12}
-        style={mapStyles}
-        //containerStyle = {containerStyle}
-        initialCenter={
-          {
-            lat: 38.5382,
-            lng: -121.7617
-          }
-        }
+  render() {
+    return (
+      <LoadScript
+        googleMapsApiKey= {GOOGLE_API_KEY}
       >
-      {
-      this.props.locations.map(marker => {
-          console.log(marker.name);
-          return(
-            <Marker key={marker.name} position={{lat : marker.lat, lng : marker.long}} onMouseover={this.onMouseoverMarker}/>
-          )
-        })
-      }
-      <InfoWindow
-        marker={this.state.activeMarker}
-        visible = {this.state.showingInfoWindow}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
-     </Map>  
-    </div>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={{lat: 38.5382,lng: -121.7617}}
+          zoom={12}
+        >
+          { /* Child components, such as markers, info windows, etc. */ 
+            this.props.locations.map(marker => {
+              return (
+                <Marker id = {marker.address} key ={marker.address} position = {{lat: marker.lat, lng: marker.long}} onClick = {() => this.handleClick(marker) } onMouseOver = {() => this.handleHover(marker) }/>
+              )}
+            )
+          
+          }
+          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
+            <div>
+              <h1>
+                {this.state.currentLocation.address}
+              </h1>
+            </div>
+          </InfoBox>
+        </GoogleMap>
+      </LoadScript>
     )
   }
-    
-  
 }
 
 
 //once google api is implemented, we will be able to call this a real map
-export default GoogleApiWrapper({
-  apiKey: GOOGLE_API_KEY
-})(PseudoMapContainer); //change the name of this later
+export default PseudoMap

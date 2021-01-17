@@ -3,7 +3,10 @@ import axios from 'axios'
 import 'antd/dist/antd.css'
 import Search from './components/search'
 import AddressInfo from './components/addressinfo'
+import { LoadScript } from '@react-google-maps/api';
 import Map from './components/Map'
+
+import {GOOGLE_API_KEY} from './Constants'
 
 class App extends React.Component {
   // constructor(props){
@@ -63,6 +66,9 @@ class App extends React.Component {
 
   render() {
     return (
+      <LoadScript
+      googleMapsApiKey= {GOOGLE_API_KEY}
+      >
       <div>
         <header>
           <Search callback={this.changeQuery}/>
@@ -72,6 +78,7 @@ class App extends React.Component {
           <Map locations={ /*this.state.*/ this.query} google = {this.google}/>
         </div>
       </div>
+      </LoadScript>
     )
   }
 }
