@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import {Button, Form, Input, Rate, Select} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
-import "./Search.css"
+import "./search.css"
 
 import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
@@ -25,15 +25,6 @@ class Search extends React.Component {
         this.onPlaceChanged = this.onPlaceChanged.bind(this)
 
         this.onFinish = this.onFinish.bind(this)
-    }
-
-    //get all addresses on page load
-    componentDidMount() {
-        axios
-        .get(BASE_URL + '/api/location-all', {})
-        .then(response => {
-            this.props.callback(response)
-        })
     }
 
     onFinish(values) {

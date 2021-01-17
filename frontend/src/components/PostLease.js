@@ -1,7 +1,7 @@
 import React from "react"
 import axios from 'axios'
 
-import {Modal, Button, Form, Input, InputNumber} from "antd"
+import {Modal, Button, Form, Input, InputNumber, Divider} from "antd"
 import { BASE_URL } from "../Constants";
 
 class PostLease extends React.Component {
@@ -63,33 +63,13 @@ class PostLease extends React.Component {
                     footer={[]}>
                     <Form
                         onFinish={this.onFinish}>
-
+                        <Input disabled value ={'ADDRESS HERE'} addonBefore ={'New lease listing for'}/>
+                        <Divider> Leaser Information </Divider>
                         <Form.Item
                         name="name"
                         label="Name"
                         rules={[{required: true, message: 'Please input a name!'}]}>
                             <Input />
-                        </Form.Item>
-
-                        <Form.Item
-                        name="price"
-                        label="Price"
-                        rules={[{required: true, message: 'Please input a price!'}]}>
-                            <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/>
-                        </Form.Item>
-
-                        <Form.Item
-                        name="bed"
-                        label="Beds"
-                        rules={[{required: true, message: 'Please input the number of beds!'}]}>
-                            <InputNumber/>
-                        </Form.Item>
-
-                        <Form.Item
-                        name="bath"
-                        label="Baths"
-                        rules={[{required: true, message: 'Please input the number of baths!'}]}>
-                            <InputNumber/>
                         </Form.Item>
 
                         <Form.Item
@@ -106,10 +86,34 @@ class PostLease extends React.Component {
                             <InputNumber/>
                         </Form.Item>
 
+                        <Divider> Lease Unit Information </Divider>
+                        <Form.Item
+                        style = {{ float: 'left'}}
+                        name="price"
+                        label="Price"
+                        rules={[{required: true, message: 'Please input a price!'}]}>
+                            <InputNumber formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
+                        </Form.Item>
+                        <p style = {{float: 'left', margin: '5px 8px'}}>per month</p>
+                        <Form.Item
+                        style = {{width: '100%'}}
+                        name="bed"
+                        label="Beds"
+                        rules={[{required: true, message: 'Please input the number of beds!'}]}>
+                            <InputNumber/>
+                        </Form.Item>
+
+                        <Form.Item
+                        name="bath"
+                        label="Baths"
+                        rules={[{required: true, message: 'Please input the number of baths!'}]}>
+                            <InputNumber/>
+                        </Form.Item>
+
                         <Form.Item
                         name="body"
                         rules={[{required: true, message: 'Please input a body!'}]}>
-                            <Input.TextArea placeholder="Write body here..." rows={7}/>
+                            <Input.TextArea placeholder="Write any additional info here" rows={5}/>
                         </Form.Item>
 
                         <div style = {{position: 'relative', bottom: '20px'}}>

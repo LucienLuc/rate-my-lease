@@ -9,11 +9,13 @@ const AddressInfo = ({location}) => {
     return(
     <div>
         <h1>{location.address}</h1>
-        <p>{location.lat} : {location.long}</p>
-        <p>{location.avg_rating}</p>
-        <>
-            <ReviewInfo reviews = {location.reviews}/>
-        </> 
+        <h2> Average Rating: {location.avg_rating}</h2>
+        <>{ location.reviews.map( review => {
+            console.log(review);
+            return(
+                <ReviewInfo review = {review}/>
+            )
+        })}</> 
         
         <>
             <LeaseInfo leases = {location.leases}/>
