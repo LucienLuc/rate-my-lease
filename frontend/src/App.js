@@ -20,7 +20,7 @@ class App extends React.Component {
     this.setState({query : newQuery.data})
     console.log(this.state.query)
   }
-  
+
   query = [{
     address: "24991 Pam",
     lat: 38.5382,
