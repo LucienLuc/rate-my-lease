@@ -1,11 +1,7 @@
 import React, { Component} from 'react';
-import AddressInfo from './addressinfo';
-import LeaseInfo from './LeaseInfo';
+import AddressInfo from './AddressInfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
-import Item from 'antd/lib/list/Item';
 import {Drawer} from "antd"
-import { render } from 'react-dom';
-import {GOOGLE_API_KEY} from '../Constants'
 import "./Map.css"
 
 
@@ -83,8 +79,8 @@ class PseudoMap extends Component {
             </div>
           </InfoBox>
         </GoogleMap>
-        <Drawer
-            title= {this.state.currentLocation.address}
+        <Drawer 
+            title = {this.state.currentLocation.address}
             placement="right"
             closable={false}
             onClose={this.handleBarClose}

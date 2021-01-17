@@ -1,10 +1,25 @@
-const ReviewInfo = ({key, review}) => {
+import {Table} from "antd"
+const ReviewInfo = ({reviews}) => {
+
+    const columns = [{
+        title: 'Rating',
+        dataIndex: 'rating',
+        key: 'rating'
+    },
+    {
+        title: 'Date',
+        dataIndex: 'date',
+        key: 'date'
+    },
+    {
+        title: 'Review',
+        dataIndex: 'review',
+        key: 'review'
+    }]
+
     return(
         <div>
-            <h3>  Review Info</h3>
-            <p>     rating: {review.rating}</p>
-            <p>     date:   {review.date}</p>
-            <p>     {review.body}</p>
+            <Table dataSource={reviews} columns= {columns}/>
         </div>
     )
 }

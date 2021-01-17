@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import {Button, Form, Input, Rate, Select} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
-import "./search.css"
+import "./Search.css"
 
 import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
