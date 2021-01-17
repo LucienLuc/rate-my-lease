@@ -30,6 +30,10 @@ class Search extends React.Component {
     }
 
     onFinish(values) {
+        if (!this.state.selectedValidPlace) {
+            return
+        }
+
         // if get address is checked
         if(values.selection === 0)
         {
@@ -50,7 +54,6 @@ class Search extends React.Component {
                         selection: values.selection
                     }
                 }
-                console.log(config)
                 axios
                     .get(BASE_URL + '/api/location', config)
                     .then(response => {

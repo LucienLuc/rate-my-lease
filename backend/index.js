@@ -70,8 +70,32 @@ app.get('/api/location', (request, response) => {
                     ]
                     response.json(config).end()
                 })
-            }else {
-                response.status(404).end()
+            }else { // Searched address not in database
+                client.geocode({
+                    params: {
+                        address: query.address,
+                        region: 'us',
+                        key: google_url
+                    }
+                }).then(r => {
+                    const config = [
+                        {
+                            address: r.data.results[0].formatted_address,
+                            body: '',
+                            reviews: [],
+                            avg_rating: 0,
+                            lat: r.data.results[0].geometry.location.lat,
+                            long: r.data.results[0].geometry.location.lng,
+                            leases : []
+                        }
+                    ]
+                    // console.log(config)
+                    response.json(config).end()
+                }).catch(error => { 
+                    console.log(error)
+                    response.status(404).end()
+                })
+                // response.status(404).end()
             }
         })
         .catch(error => {
