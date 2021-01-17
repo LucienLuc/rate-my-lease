@@ -16,7 +16,8 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      query : {}
+      query : {},
+      isLoaded: false
     }
   }
 
@@ -24,17 +25,21 @@ class App extends React.Component {
     axios
       .get(BASE_URL + '/api/location-all')
       .then(response => {
-          this.setState({query: response.data})
-          console.log(this.state.query);
+          // console.log(response)
+          this.setState({query: response.data, isLoaded: true})
+          // console.log(this.state.query);
       })
   }
   
   changeQuery = (newQuery) => {
     this.setState({query : newQuery.data})
-    console.log(this.state.query);
+    // console.log(this.state.query);
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return null
+    }
     return (
       <LoadScript
       googleMapsApiKey= {GOOGLE_API_KEY}
