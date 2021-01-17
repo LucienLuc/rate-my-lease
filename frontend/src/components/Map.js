@@ -43,9 +43,6 @@ class PseudoMap extends Component {
 
   render() {
     return (
-      <LoadScript
-        googleMapsApiKey= {GOOGLE_API_KEY}
-      >
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{lat: 38.5382,lng: -121.7617}}
@@ -67,7 +64,6 @@ class PseudoMap extends Component {
             </div>
           </InfoBox>
         </GoogleMap>
-      </LoadScript>
     )
   }
 }
