@@ -27,15 +27,6 @@ class Search extends React.Component {
         this.onFinish = this.onFinish.bind(this)
     }
 
-    //get all addresses on page load
-    componentDidMount() {
-        axios
-        .get(BASE_URL + '/api/location-all', {})
-        .then(response => {
-            this.props.callback(response)
-        })
-    }
-
     onFinish(values) {
         // if get address is checked
         if(values.selection === 0)
