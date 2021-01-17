@@ -18,7 +18,7 @@ const google_url = process.env.GOOGLE_API_KEY
 
 app.get('/api/location-all', (request, response) => {
     Location.find({}, (error, docs) => {
-        response.json(docs)
+        response.json(docs).end()
     })
 })
 
@@ -42,7 +42,7 @@ app.get('/api/location', (request, response) => {
                             leases
                         }
                     ]
-                    response.json(config)
+                    response.json(config).end()
                 })
             }else {
                 response.status(404).end()
@@ -155,7 +155,7 @@ app.get('/api/location', (request, response) => {
                                 }
                             }
                         }
-                        response.json(config)
+                        response.json(config).end()
                     })
                     .catch(error => {
                         console.log(error)
@@ -190,6 +190,7 @@ app.post('/api/location', (request, response) => {
             })
             tmpLocation.save().then(result => {
                 console.log('sent location')
+                response.status(201).end()
             })
         })
         .catch((e) => {
@@ -203,7 +204,7 @@ app.get('/api/review', (request, response) => {
     Location.findOne({address: query.address})
     .then(location => {
         if(location){
-            response.json(location.reviews)
+            response.json(location.reviews).end()
         }else {
             response.status(404).end()
         }
@@ -245,6 +246,7 @@ app.post('/api/review', (request, response) => {
 
             location.save().then(result => {
                 console.log('sent')
+                response.status(201).end()
             })
         } 
         else // if user sent valid address but not database yet
@@ -296,6 +298,7 @@ app.post('/api/lease', (request, response) => {
             })
             tmpLease.save().then(result => {
                 console.log('sent')
+                response.status(201).end()
             })
         } 
         else 
