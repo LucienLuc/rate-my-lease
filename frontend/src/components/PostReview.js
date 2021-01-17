@@ -1,8 +1,8 @@
 import React from "react"
 import axios from 'axios'
 
-import {Modal, Button, Form, Rate, Input} from "antd"
-import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
+import {Modal, Button, Form, Rate, Input, Divider} from "antd"
+import {StarTwoTone} from "@ant-design/icons"
 import { BASE_URL } from "../Constants";
 
 class PostReview extends React.Component {
@@ -10,13 +10,15 @@ class PostReview extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            isModalVisible: false
+            isModalVisible: false,
+            ratingValue: undefined
         }
 
         this.showModal = this.showModal.bind(this)
 
         this.onFinish = this.onFinish.bind(this)
         this.handleCancel = this.handleCancel.bind(this)
+        this.handleRatingChange = this.handleRatingChange.bind(this)
     }
     
     showModal() {
@@ -25,6 +27,10 @@ class PostReview extends React.Component {
 
     handleCancel() {
         this.setState({isModalVisible: false})
+    }
+
+    handleRatingChange(value) {
+        this.setState({ratingValue: value})
     }
 
     onFinish(values) {
@@ -50,7 +56,7 @@ class PostReview extends React.Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Open
+                    Post a Review!
                 </Button>
                 <Modal 
                     title="Post a review" 
@@ -58,15 +64,22 @@ class PostReview extends React.Component {
                     onCancel={this.handleCancel}
                     footer={[]}>
                     <Input disabled value ={'ADDRESS HERE'} addonBefore ={'Review for'}/>
+                    <Divider/>
                     <Form
                         onFinish={this.onFinish}>
-
                         <Form.Item
                         name="rating"
+                        style ={{position: 'relative', width: '100%', left: '37%',}}
                         rules={[{required: true, message: 'Please input a rating!'}]}>
-                            <Rate allowHalf/>
+                            <Rate allowHalf onChange = {e => this.handleRatingChange(e)}/>
                         </Form.Item>
-
+                        <Input disabled value ={this.state.ratingValue} addonAfter ={<StarTwoTone  twoToneColor = "#FFDD33"/>} style = {{
+                            position: 'relative',
+                            left: '41%',
+                            right: 'auto',
+                            top: '-3px',
+                            margin: '5px',
+                            width: '18%'}}/>
                         <Form.Item
                         name="body"
                         rules={[{required: true, message: 'Please input a review!'}]}>

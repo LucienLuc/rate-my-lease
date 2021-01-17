@@ -74,7 +74,8 @@ class PseudoMap extends Component {
           >
             <div className = "infobox">
               <h1>
-                {this.state.currentLocation.address}
+                {this.state.currentLocation.address} Rating:  
+                {this.state.currentLocation.avg_rating}/5
               </h1>
             </div>
           </InfoBox>
