@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {Modal, Button, Form, Rate, Input} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
+import { BASE_URL } from "../Constants";
 
 class PostReview extends React.Component {
 
@@ -27,7 +28,22 @@ class PostReview extends React.Component {
     }
 
     onFinish(values) {
-        console.log(values);
+        const config = {
+            address: this.props.address,
+            reviews: {
+                body: values.body,
+                rating: values.rating
+            }
+        }
+
+        axios
+            .post(BASE_URL + '/api/review', config)
+            .then(response => {
+                console.log('review sent!')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
@@ -45,12 +61,14 @@ class PostReview extends React.Component {
                         onFinish={this.onFinish}>
 
                         <Form.Item
-                        name="rate">
+                        name="rating"
+                        rules={[{required: true, message: 'Please input a rating!'}]}>
                             <Rate allowHalf/>
                         </Form.Item>
 
                         <Form.Item
-                        name="body">
+                        name="body"
+                        rules={[{required: true, message: 'Please input a review!'}]}>
                             <Input.TextArea placeholder="Write review here..." rows={7}/>
                         </Form.Item>
 
