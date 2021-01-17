@@ -7,7 +7,7 @@ import "./search.css"
 
 import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
-import { Autocomplete } from "@react-google-maps/api"
+import {Autocomplete} from "@react-google-maps/api"
 
 class Search extends React.Component {
 
@@ -47,6 +47,7 @@ class Search extends React.Component {
                         selection: values.selection
                     }
                 }
+                console.log(config)
                 axios
                     .get(BASE_URL + '/api/location', config)
                     .then(response => {
@@ -87,7 +88,7 @@ class Search extends React.Component {
 
     onPlaceChanged() {
         if (this.autocomplete !== null) {
-        //   console.log(this.autocomplete.getPlace())
+          console.log(this.autocomplete.getPlace())
           this.setState({addressValue: this.autocomplete.getPlace().formatted_address})
         } else {
           console.log('Autocomplete is not loaded yet!')
@@ -116,9 +117,14 @@ class Search extends React.Component {
                 <Form.Item
                 className="address"
                 name="address">
+                    {/* <ComponentRestrictions></ComponentRestrictions> */}
                     <Autocomplete
                     onLoad={this.onLoad}
                     onPlaceChanged={this.onPlaceChanged}
+                    types = {['address']}
+                    options
+                    // location =  {38.5382, -121.7617}
+                    // radius = {10000}
                     >
                         <Input size="default" placeholder="Address" value = {this.state.addressValue} onChange = {(e) => this.setState({addressValue: e.target.value})}addonBefore={<HomeOutlined/>}/>
                     </Autocomplete>

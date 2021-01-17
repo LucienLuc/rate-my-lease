@@ -66,7 +66,7 @@ app.get('/api/location', (request, response) => {
                     response.json(config).end()
                 })
             }else {
-                response.status(404).end()
+                response.status(406).end()
             }
         })
         .catch(error => {
@@ -198,6 +198,7 @@ app.post('/api/location', (request, response) => {
         .geocode({
             params: {
                 address: body.address,
+                region: 'us',
                 key: google_url
             }
         })

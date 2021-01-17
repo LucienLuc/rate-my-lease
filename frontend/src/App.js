@@ -11,6 +11,8 @@ import { LoadScript } from '@react-google-maps/api';
 import {BASE_URL} from './Constants'
 import {GOOGLE_API_KEY} from './Constants'
 
+const libraries = ['places']
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -40,7 +42,7 @@ class App extends React.Component {
     return (
       <LoadScript
       googleMapsApiKey= {GOOGLE_API_KEY}
-      libraries = {['places']}
+      libraries = {libraries}
       >
       <div>
         <header>
