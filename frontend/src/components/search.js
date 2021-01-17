@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import axios from 'axios'
 
 import {Button, Form, Input, Rate, Select} from "antd"
@@ -8,9 +8,13 @@ import "./search.css"
 import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
 
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+
 const Search = ({callback}) => {
 
     const [isAddressSearch, setAddressSearch] = useState(true)
+    const [addressValue, setAddressValue] = useState(null);
+
 
     const onFinish = (values) => {
         // if get address is checked
@@ -88,7 +92,7 @@ const Search = ({callback}) => {
                 <Form.Item
                 className="address"
                 name="address">
-                    <Input size="default" placeholder="Address" addonBefore={<HomeOutlined/>}/>
+                    <Input size="default" placeholder="Address" value = {addressValue} onChange = {(e) => setAddressValue(e.target.value)} addonBefore={<HomeOutlined/>}/>
                 </Form.Item>
                 {!isAddressSearch &&
                 <div>
@@ -150,6 +154,5 @@ const Search = ({callback}) => {
         </div>
     )
 }
-
 
 export default Search
