@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
 import axios from 'axios'
 
-import {Button, Form, Input, Rate, Select, Tooltip} from "antd"
+import {Button, Form, Input, Alert, Select, Tooltip} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import "./search.css"
 
