@@ -20,6 +20,6 @@
   
 .ant-drawer-body {
     border: 3px solid #91d5ff;
-    background-color: white;
+    background-color: #eaf7ff;
     height: calc(100vh - 55px);
 }

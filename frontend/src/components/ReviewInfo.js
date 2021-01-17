@@ -77,7 +77,9 @@ const ReviewInfo = ({review}) => {
                 datetime = {timeTag} 
                 content = {review.body}
                 author = {review.rating}
-            />
+            >
+            
+            </Comment>
 
         </div>
     )
