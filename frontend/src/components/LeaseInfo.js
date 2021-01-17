@@ -8,35 +8,43 @@ const LeaseInfo = ({leases}) => {
       {
         title: 'Name',
         dataIndex: 'name',
-        key: 'name'
+        key: 'name',
+        className : 'columns'
       }, {
         title: 'Date',
         dataIndex: 'date',
-        key: 'date'
+        key: 'date',
+        className : 'columns'
       }, {
         title: 'Price Listing',
         dataIndex: 'price',
-        key: 'price'
+        key: 'price',
+        className : 'columns'
       }, {
         title: 'Beds',
         dataIndex: 'bed',
-        key: 'bed'
+        key: 'bed',
+        className : 'columns'
       }, {
         title: 'Baths',
         dataIndex: 'bath',
-        key: 'bath'
+        key: 'bath',
+        className : 'columns'
       }, {
         title: 'Phone',
         dataIndex: 'contact/phone',
-        key: 'contact/phone'
+        key: 'contact/phone',
+        className : 'columns'
       }, {
         title: 'Email',
         dataIndex: 'contact/email',
-        key: 'contact/email'
+        key: 'contact/email',
+        className : 'columns'
       }, {
         title: 'Description',
         dataIndex: 'body',
         key: 'body'
+        ,className : 'columns'
       }
     ];
 
@@ -53,8 +61,8 @@ const LeaseInfo = ({leases}) => {
     // body: "body"
 
     return(
-      <div className = 'allData'>
-        <Table dataSource = {leases} columns = {columns}/>
+      <div>
+        <Table className = 'allData' dataSource = {leases} columns = {columns}/>
       </div>
     )
   
