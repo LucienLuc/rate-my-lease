@@ -13,6 +13,12 @@ import {BASE_URL} from '../Constants'
 
 
 const AddressInfo = ({location}) => {
+    const [isNewLocation, setBool] = useState(false)
+
+    if(location.reviews.length === 0 && location.leases.length === 0)
+    {
+        setBool(true)
+    }
 
     const sentReview = () => {
         notification.open({
@@ -54,24 +60,25 @@ const AddressInfo = ({location}) => {
     }
 
     return(
-    <div>
+    <>
+        {!isNewLocation &&
+        <div>
         <h1>{location.address} <Rate allowHalf disabled defaultValue={location.avg_rating}/> ({location.reviews.length})</h1>
         
         <h2> Leases </h2>
-        <PostLease location={location}/>
+        <PostLease location={location} callback={sentLease}/>
         <LeaseInfo leases = {location.leases}/>
         <br></br>
         <h2> Reviews </h2>
-        <PostReview location={location}/>
+        <PostReview location={location} callback={sentReview}/>
         <>{ location.reviews.map( review => {
             console.log(review);
             return(
                 <ReviewInfo review = {review}/>
             )
-        })}</> 
-        
-        
-    </div>
+        })}</>
+        </div>}
+    </>
     )
 }
 
