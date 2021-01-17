@@ -71,12 +71,12 @@ class PostReview extends React.Component {
                         rules={[{required: true, message: 'Please input a review!'}]}>
                             <Input.TextArea placeholder="Write review here..." rows={7}/>
                         </Form.Item>
-
-                        <Form.Item>
+                        <div style = {{position: 'relative', bottom: '20px'}}>
+                        <Form.Item style={{float: "right", margin: '5px', position: "relative"}}>
                             <Button 
                                 type="primary" 
                                 htmlType="submit" 
-                                style={{float: "right", padding: "5px", position: "relative", right: "0px"}}>
+                            >
                                     Submit
                             </Button>
                         </Form.Item>
@@ -84,9 +84,10 @@ class PostReview extends React.Component {
                         <Button 
                             danger 
                             onClick={this.handleCancel} 
-                            style={{float: "right", padding: "5px", position: "relative", right: "0px"}}>
+                            style={{float: "right", margin: '5px', position: "relative"}}>
                                 Cancel
                         </Button>
+                        </div>
                     </Form>
                 </Modal>
             </div>

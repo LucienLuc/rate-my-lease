@@ -3,7 +3,7 @@ import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
 import Item from 'antd/lib/list/Item';
-import {Button} from 'antd'
+import {Drawer} from "antd"
 import { render } from 'react-dom';
 import {GOOGLE_API_KEY} from '../Constants'
 import "./Map.css"
@@ -26,11 +26,17 @@ class PseudoMap extends Component {
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
+    this.handleBarClose = this.handleBarClose.bind(this);
   }
 
   handleClick(location){
     console.log("clicked on");
     console.log(location);
+    this.setState({
+      currentLocation: location,
+      messageVisible: false,
+      barVisible: true
+    })
   }
 
   handleHover(location){
@@ -39,6 +45,14 @@ class PseudoMap extends Component {
     this.setState({
       currentLocation : location,
       messageVisible: true 
+    })
+  }
+
+  handleBarClose(){
+    console.log("closed the side bar");
+    this.setState({
+      messageVisible: true,
+      barVisible: false
     })
   }
 
@@ -58,7 +72,10 @@ class PseudoMap extends Component {
             )
           
           }
-          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
+          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} 
+          visible = {this.state.messageVisible} 
+          options={{ closeBoxURL: ``, enableEventPropagation: true }}
+          >
             <div className = "infobox">
               <h1>
                 {this.state.currentLocation.address}
@@ -66,6 +83,15 @@ class PseudoMap extends Component {
             </div>
           </InfoBox>
         </GoogleMap>
+        <Drawer
+            title="Address"
+            placement="right"
+            closable={false}
+            onClose={this.handleBarClose}
+            visible={this.state.barVisible}
+            width={720}>
+                <h>DOOT</h>
+            </Drawer>
       </div>
     )
   }
