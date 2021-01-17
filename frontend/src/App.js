@@ -3,7 +3,6 @@ import axios from 'axios'
 import 'antd/dist/antd.css'
 
 import Search from './components/Search'
-import AddressInfo from './components/AddressInfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
 import PostLease from './components/PostLease'
@@ -49,7 +48,7 @@ class App extends React.Component {
         </header>
 
         <div>
-          <Map locations={this.state.query} google = {this.google}/>
+          <Map locations={this.state.query}/>
         </div>
 
         <div>

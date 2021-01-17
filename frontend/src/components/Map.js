@@ -1,11 +1,7 @@
 import React, { Component} from 'react';
 import AddressInfo from './AddressInfo';
-import LeaseInfo from './LeaseInfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
-import Item from 'antd/lib/list/Item';
 import {Drawer} from "antd"
-import { render } from 'react-dom';
-import {GOOGLE_API_KEY} from '../Constants'
 import "./map.css"
 
 
@@ -22,7 +18,9 @@ class PseudoMap extends Component {
     this.state = {
       currentLocation : {},
       barVisible : false,
-      messageVisible : false
+      messageVisible : false,
+      centerLat: 38.5382,
+      centerLng: -121.7617
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
@@ -35,7 +33,9 @@ class PseudoMap extends Component {
     this.setState({
       currentLocation: location,
       messageVisible: false,
-      barVisible: true
+      barVisible: true,
+      centerLat: location.lat,
+      centerLng: location.lng
     })
   }
 
@@ -44,7 +44,9 @@ class PseudoMap extends Component {
     console.log(location);
     this.setState({
       currentLocation : location,
-      messageVisible: true 
+      messageVisible: true,
+      centerLat: location.lat,
+      centerLng: location.lng
     })
   }
 
@@ -61,7 +63,7 @@ class PseudoMap extends Component {
       <div id = "map">
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={{lat: 38.5382,lng: -121.7617}}
+          center={{lat: this.state.centerLat, lng: this.state.centerLng}}
           zoom={14}
         >
           { /* Child components, such as markers, info windows, etc. */ 
@@ -84,8 +86,8 @@ class PseudoMap extends Component {
             </div>
           </InfoBox>
         </GoogleMap>
-        <Drawer
-            title="Address"
+        <Drawer 
+            title = ""//{this.state.currentLocation.address}
             placement="right"
             closable={false}
             onClose={this.handleBarClose}
