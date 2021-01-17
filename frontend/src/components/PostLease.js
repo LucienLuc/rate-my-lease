@@ -28,7 +28,7 @@ class PostLease extends React.Component {
 
     onFinish(values) {
         const config = {
-            address: this.props.locationaddress,
+            address: this.props.location.address,
             name: values.name,
             price: values.price,
             bed: values.bed,
