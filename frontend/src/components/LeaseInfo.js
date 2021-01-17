@@ -2,51 +2,51 @@ import {Table} from "antd"
 import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
-    //this func will be used to return information aboaut the lease
+  console.log("jajajjajjajaja");
+  //console.log(leases);
+  leases.map(element => {
+    const date = new Date(element.date);
+    element.date = date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+  })
 
-    const columns = [
-      {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        className : 'columns'
-      }, {
-        title: 'Date',
-        dataIndex: 'date',
-        key: 'date',
-        className : 'columns'
-      }, {
-        title: 'Price Listing',
-        dataIndex: 'price',
-        key: 'price',
-        className : 'columns'
-      }, {
-        title: 'Beds',
-        dataIndex: 'bed',
-        key: 'bed',
-        className : 'columns'
-      }, {
-        title: 'Baths',
-        dataIndex: 'bath',
-        key: 'bath',
-        className : 'columns'
-      }, {
-        title: 'Phone',
-        dataIndex: 'contact/phone',
-        key: 'contact/phone',
-        className : 'columns'
-      }, {
-        title: 'Email',
-        dataIndex: 'contact/email',
-        key: 'contact/email',
-        className : 'columns'
-      }, {
-        title: 'Description',
-        dataIndex: 'body',
-        key: 'body'
-        ,className : 'columns'
-      }
-    ];
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    }, {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    }, {
+      title: 'Price Listing',
+      dataIndex: 'price',
+      key: 'price',
+    }, {
+      title: 'Beds',
+      dataIndex: 'bed',
+      key: 'bed',
+    }, {
+      title: 'Baths',
+      dataIndex: 'bath',
+      key: 'bath',
+    }, {
+      title: 'Phone',
+      dataIndex: ['contact','phone'],
+      width : 90,
+      key: 'contact/phone',
+    }, {
+      title: 'Email',
+      dataIndex: ['contact','email'],
+      width : 150,
+      key: 'contact/email',
+    }, {
+      title: 'Description',
+      dataIndex: 'body',
+      width : 1000,
+      key: 'body'
+    }
+  ];
 
 
     // name: "Jiu",
@@ -62,7 +62,7 @@ const LeaseInfo = ({leases}) => {
 
     return(
       <div>
-        <Table className = 'allData' dataSource = {leases} columns = {columns}/>
+        <Table className = 'allData' dataSource = {leases} columns = {columns} pagination = {false}/>
       </div>
     )
   

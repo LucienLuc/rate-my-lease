@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import AddressInfo from './addressinfo';
+import AddressInfo from './AddressInfo';
 import { GoogleMap, InfoBox, LoadScript, Marker } from '@react-google-maps/api';
 import {Drawer} from "antd"
 import "./map.css"
@@ -59,6 +59,7 @@ class PseudoMap extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div id = "map">
         <GoogleMap
@@ -92,7 +93,7 @@ class PseudoMap extends Component {
             closable={false}
             onClose={this.handleBarClose}
             visible={this.state.barVisible}
-            width={900}>
+            width={1000}>
                 <AddressInfo location = {this.state.currentLocation}/>
             </Drawer>
       </div>
