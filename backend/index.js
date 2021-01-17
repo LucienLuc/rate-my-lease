@@ -262,7 +262,6 @@ app.post('/api/review', (request, response) => {
 
 app.post('/api/lease', (request, response) => {
     const body = request.body
-
     // error checking
     if(body.address === undefined || body.name === undefined || body.price === undefined || 
         body.bed === undefined || body.bath === undefined || body.contact === undefined || body.body === undefined)

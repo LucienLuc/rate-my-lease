@@ -6,6 +6,7 @@ import Search from './components/search'
 import AddressInfo from './components/addressinfo'
 import Map from './components/Map'
 import PostReview from './components/PostReview'
+import PostLease from './components/PostLease'
 
 import { LoadScript } from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from './Constants'
@@ -84,6 +85,9 @@ class App extends React.Component {
 
         <div>
           <PostReview/>
+        </div>
+        <div>
+          <PostLease/>
         </div>
       </div>
       </LoadScript>
