@@ -84,7 +84,7 @@ class PseudoMap extends Component {
           </InfoBox>
         </GoogleMap>
         <Drawer
-            title="Address"
+            title= {this.state.currentLocation.address}
             placement="right"
             closable={false}
             onClose={this.handleBarClose}
