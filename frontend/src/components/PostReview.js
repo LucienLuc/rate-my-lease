@@ -4,6 +4,7 @@ import axios from 'axios'
 import {Modal, Button, Form, Rate, Input, Divider, Spin} from "antd"
 import {StarTwoTone} from "@ant-design/icons"
 import { BASE_URL } from "../Constants";
+import './post.css'
 
 class PostReview extends React.Component {
 
@@ -65,7 +66,7 @@ class PostReview extends React.Component {
     render() {
         return (
             <div>
-                <Button type="primary" onClick={this.showModal}>
+                <Button className = 'review-button' type="primary" onClick={this.showModal}>
                     Post a Review!
                 </Button>
                 <Modal 

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {Modal, Button, Form, Input, InputNumber, Divider, Spin} from "antd"
 import { BASE_URL } from "../Constants";
+import './post.css';
 
 class PostLease extends React.Component {
 
@@ -63,8 +64,8 @@ class PostLease extends React.Component {
 
     render() {
         return (
-            <div>
-                <Button type="primary" onClick={this.showModal}>
+            <div className = 'container'>
+                <Button className = 'lease-button' type="primary" onClick={this.showModal}>
                     Post a Lease!
                 </Button>
                 <Modal 
