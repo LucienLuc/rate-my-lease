@@ -1,10 +1,15 @@
-const ReviewInfo = ({key, review}) => {
+import {Comment} from "antd"
+const ReviewInfo = ({review}) => {
+
+
     return(
         <div>
-            <h3>  Review Info</h3>
-            <p>     rating: {review.rating}</p>
-            <p>     date:   {review.date}</p>
-            <p>     {review.body}</p>
+            <Comment 
+                datetime = {review.date}
+                content = {review.body}
+                author = {review.rating}
+            />
+
         </div>
     )
 }
