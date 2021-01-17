@@ -10,8 +10,8 @@ import {GOOGLE_API_KEY} from '../Constants'
 
 const containerStyle = {
   //position:,  
-  width: '400px',
-  height: '400px'
+  width: '100vw',
+  height: '90vh'
 }
 
 class PseudoMap extends Component {
@@ -56,7 +56,8 @@ class PseudoMap extends Component {
             )
           
           }
-          <InfoBox position = {{ lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
+          {console.log(this.state)}
+          <InfoBox position = {{lat: this.state.currentLocation.lat, lng: this.state.currentLocation.long }} visible = {true} >
             <div>
               <h1>
                 {this.state.currentLocation.address}
