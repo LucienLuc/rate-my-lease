@@ -45,6 +45,11 @@ app.get('/api/location-all', (request, response) => {
 
 app.get('/api/location', (request, response) => {
     const query = request.query
+
+    // if user failed to select valid google autocompleted address from frontend 
+    if (query.valid_address === 'false') {
+        response.status(400).end()
+    }
     // if searching for just address
     if(query.selection === '0')
     {
@@ -66,7 +71,7 @@ app.get('/api/location', (request, response) => {
                     response.json(config).end()
                 })
             }else {
-                response.status(406).end()
+                response.status(404).end()
             }
         })
         .catch(error => {

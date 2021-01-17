@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
 import axios from 'axios'
 
-import {Button, Form, Input, Rate, Select} from "antd"
+import {Button, Form, Input, Rate, Select, Tooltip} from "antd"
 import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import "./search.css"
 
@@ -15,7 +15,8 @@ class Search extends React.Component {
         super(props);
         this.state = {
             isAddressSearch: true,
-            addressValue: ''
+            addressValue: '',
+            selectedValidPlace: false
         }
         this.handleSelect = this.handleSelect.bind(this)
 
@@ -23,6 +24,7 @@ class Search extends React.Component {
 
         this.onLoad = this.onLoad.bind(this)
         this.onPlaceChanged = this.onPlaceChanged.bind(this)
+        this.handleAddressChange = this.handleAddressChange.bind(this)
 
         this.onFinish = this.onFinish.bind(this)
     }
@@ -44,6 +46,7 @@ class Search extends React.Component {
                 const config = {
                     params: {
                         address: this.state.addressValue,
+                        valid_address: this.state.selectedValidPlace,
                         selection: values.selection
                     }
                 }
@@ -61,6 +64,7 @@ class Search extends React.Component {
             const config = {
                 params: {
                     address: this.state.addressValue,
+                    valid_address: this.state.selectedValidPlace,
                     selection: values.selection,
                     min: values.min,
                     max: values.max,
@@ -79,7 +83,7 @@ class Search extends React.Component {
     }
 
     handleSelect(value) {
-       this.setState({isAddressSearch: value == 0 ? true : false})
+        this.setState({isAddressSearch: value == 0 ? true : false})
     }
 
     onLoad(autocomplete) {
@@ -88,13 +92,23 @@ class Search extends React.Component {
 
     onPlaceChanged() {
         if (this.autocomplete !== null) {
-          console.log(this.autocomplete.getPlace())
-          this.setState({addressValue: this.autocomplete.getPlace().formatted_address})
+            if (this.autocomplete.getPlace().formatted_address === undefined) {
+                this.setState({selectedValidPlace: false})
+            }
+            else {
+                this.setState({selectedValidPlace: true})
+            }
+            this.setState({addressValue: this.autocomplete.getPlace().formatted_address})
         } else {
-          console.log('Autocomplete is not loaded yet!')
+            console.log('Autocomplete is not loaded yet!')
         }
       }
 
+    handleAddressChange(e) {
+        this.setState({addressValue: e.target.value})
+        // console.log('here')
+        this.setState({selectedValidPlace: false})
+    }
     render(){
     return(
         <div className="search">
@@ -115,19 +129,28 @@ class Search extends React.Component {
                     </Select>
                 </Form.Item>
                 <Form.Item
+                validateStatus = {this.state.addressValue === '' || this.state.selectedValidPlace === true ? 'success' : 'error'}
                 className="address"
                 name="address">
-                    {/* <ComponentRestrictions></ComponentRestrictions> */}
+                    <Tooltip visible = {this.state.addressValue != '' && !this.state.selectedValidPlace} 
+                        placement = 'left' 
+                        autoAdjustOverflow = 'false'
+                        color = 'red'
+                        title = 'Select an address'>
                     <Autocomplete
                     onLoad={this.onLoad}
                     onPlaceChanged={this.onPlaceChanged}
                     types = {['address']}
-                    options
-                    // location =  {38.5382, -121.7617}
-                    // radius = {10000}
                     >
-                        <Input size="default" placeholder="Address" value = {this.state.addressValue} onChange = {(e) => this.setState({addressValue: e.target.value})}addonBefore={<HomeOutlined/>}/>
+                        <Input 
+                            size="default" 
+                            placeholder="Address" 
+                            value = {this.state.addressValue} 
+                            onChange = {(e) => this.handleAddressChange(e)} 
+                            addonBefore={<HomeOutlined/>}
+                        />
                     </Autocomplete>
+                    </Tooltip>
                 </Form.Item>
                 {!this.state.isAddressSearch &&
                 <div>
