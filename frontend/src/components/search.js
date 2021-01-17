@@ -7,16 +7,27 @@ import "./search.css"
 
 import {BASE_URL} from '../Constants'
 import {GOOGLE_API_KEY} from '../Constants'
+import { Autocomplete } from "@react-google-maps/api"
 
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+// const ScriptLoaded = require("../../docs/ScriptLoaded").default
 
-const Search = ({callback}) => {
+class Search extends React.Component {
 
-    const [isAddressSearch, setAddressSearch] = useState(true)
-    const [addressValue, setAddressValue] = useState(null);
+    // const [isAddressSearch, setAddressSearch] = useState(true)
+    // const [addressValue, setAddressValue] = useState(null);
+    constructor(props){
+        super(props);
+        this.state = {
+            isAddressSearch: true,
+            addressValue: ''
+        }
+        this.autocomplete = null
 
+        this.onLoad = this.onLoad.bind(this)
+        this.onPlaceChanged = this.onPlaceChanged.bind(this)
+    }
 
-    const onFinish = (values) => {
+    onFinish(values) {
         // if get address is checked
         if(values.selection === 0)
         {
@@ -67,11 +78,27 @@ const Search = ({callback}) => {
         }
     }
 
-    const handleSelect = (value) => {
-       setAddressSearch(value == 0 ? true : false)
+    handleSelect(value) {
+       this.setState({isAddressSearch: value == 0 ? true : false})
     }
 
-    return (
+    onLoad(autocomplete) {
+        console.log('autocomplete: ', autocomplete)
+    
+        this.autocomplete = autocomplete
+    }
+
+    onPlaceChanged() {
+        if (this.autocomplete !== null) {
+          console.log(this.autocomplete.getPlace())
+          this.setState({addressValue: this.autocomplete.getPlace().formatted_address})
+        } else {
+          console.log('Autocomplete is not loaded yet!')
+        }
+      }
+
+    render(){
+    return(
         <div className="search">
             <Form
             name="search"
@@ -82,9 +109,9 @@ const Search = ({callback}) => {
                 ["baths"]: -1,
                 ["rating"]: -1
             }}
-            onFinish={onFinish}>
+            onFinish={this.onFinish}>
                 <Form.Item name = "selection" className = 'select'>
-                    <Select onSelect = {handleSelect}>
+                    <Select onSelect = {this.handleSelect}>
                         <Select.Option value={0}>Search Addresses</Select.Option>
                         <Select.Option value={1}>Search Leases</Select.Option>
                     </Select>
@@ -92,9 +119,14 @@ const Search = ({callback}) => {
                 <Form.Item
                 className="address"
                 name="address">
-                    <Input size="default" placeholder="Address" value = {addressValue} onChange = {(e) => setAddressValue(e.target.value)} addonBefore={<HomeOutlined/>}/>
+                    <Autocomplete
+                    onLoad={this.onLoad}
+                    onPlaceChanged={this.onPlaceChanged}
+                    >
+                        <Input size="default" placeholder="Address" value = {this.state.addressValue} onChange = {(e) => this.setState({addressValue: e.target.value})}addonBefore={<HomeOutlined/>}/>
+                    </Autocomplete>
                 </Form.Item>
-                {!isAddressSearch &&
+                {!this.isAddressSearch &&
                 <div>
                 <Form.Item
                 className="minPrice"
@@ -152,7 +184,7 @@ const Search = ({callback}) => {
                 </Form.Item>
             </Form>
         </div>
-    )
+    )}
 }
 
 export default Search
