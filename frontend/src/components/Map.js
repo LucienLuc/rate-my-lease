@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState} from 'react';
 import AddressInfo from './addressinfo';
 import LeaseInfo from './LeaseInfo';
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
@@ -19,18 +19,18 @@ const mapStyles = {
 //   height: '90%'
 // }
 
-export class PseudoMap extends Component {
+const PseudoMap = (props) =>  {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker : {},
-      selectedPlace: {}
-    };
-    this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
-    this.onMouseclick = this.onMouseclick.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     showingAddressBar: false,
+  //     showingInfoWindow: false,
+  //     selectedPlace: {}
+  //   };
+  //   this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
+  //   this.onMouseclick = this.onMouseclick.bind(this);
+  // }
 
   onMouseoverMarker(props, marker, e) {
     // console.log(props)
@@ -42,18 +42,25 @@ export class PseudoMap extends Component {
       activeMarker: marker
     })
   }
-  onMouseclick(props, marker, e) {
 
+  const onMouseclick = ({location}) =>{
+    this.setState({
+      selectedPlace: location,
+      showingInfoWindow: false,
+      showingAddressBar: true
+    })
   }
-
-  render() {
-    return (
+  
+  console.log(props.google);
+  
+  return (
       <div>
         <h1>
           bruh
         </h1>
+        <>{console.log(props)}</>
         <Map
-          google={this.props.google}
+          google={props.google}
           zoom={12}
           style={mapStyles}
           //containerStyle = {containerStyle}
@@ -83,7 +90,6 @@ export class PseudoMap extends Component {
       </div>
     )
   }
-}
 
 
 //once google api is implemented, we will be able to call this a real map
