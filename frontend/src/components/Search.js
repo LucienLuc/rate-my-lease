@@ -138,7 +138,7 @@ class Search extends React.Component {
             >
                 <Form.Item name = "selection" className = 'select'>
                     <Select onSelect = {this.handleSelect}>
-                        <Select.Option value={0}>Search Reviews and Leases</Select.Option>
+                        <Select.Option value={0}>Search Addresses</Select.Option>
                         <Select.Option value={1}>Search Available Leases</Select.Option>
                     </Select>
                 </Form.Item>
