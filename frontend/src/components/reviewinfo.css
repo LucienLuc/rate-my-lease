@@ -1,3 +1,19 @@
 .Comment{
     border-bottom: 3px double #91d5ff;
 }
+
+.rate{
+    width: 200px;
+    height: 10px;
+    margin-top: 10px;
+    padding-bottom: 0px;
+}
+
+.ant-rate-star{
+    /* width: 15px; */
+    /* margin-left: 0px; */
+    /* padding-bottom: 0px; */
+    /* height: 5px; */
+    /* size: 5px 5px; */
+}
+

@@ -1,4 +1,4 @@
-import {Comment} from "antd"
+import {Comment, Rate} from "antd"
 const ReviewInfo = ({review}) => {
     const r_date = new Date(review.date);
     const now = new Date();
@@ -73,13 +73,12 @@ const ReviewInfo = ({review}) => {
 
     return(
         <div className = "Comment">
+            <Rate className = 'rate' allowHalf disabled defaultValue={review.rating}/>
             <Comment 
                 datetime = {timeTag} 
                 content = {review.body}
                 author = {review.rating}
-            >
-            
-            </Comment>
+            />
 
         </div>
     )
