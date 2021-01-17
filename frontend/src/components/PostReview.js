@@ -1,7 +1,7 @@
 import React from "react"
 import axios from 'axios'
 
-import {Modal, Button, Form, Rate, Input, Divider} from "antd"
+import {Modal, Button, Form, Rate, Input, Divider, Spin} from "antd"
 import {StarTwoTone} from "@ant-design/icons"
 import { BASE_URL } from "../Constants";
 import './post.css'
@@ -12,10 +12,12 @@ class PostReview extends React.Component {
         super(props);
         this.state = {
             isModalVisible: false,
-            ratingValue: undefined
+            ratingValue: undefined,
+            loading: false
         }
 
         this.showModal = this.showModal.bind(this)
+        this.toggle = this.toggle.bind(this)
 
         this.onFinish = this.onFinish.bind(this)
         this.handleCancel = this.handleCancel.bind(this)
@@ -24,6 +26,10 @@ class PostReview extends React.Component {
     
     showModal() {
         this.setState({isModalVisible: true})
+    }
+
+    toggle(value) {
+        this.setState({loading: value})
     }
 
     handleCancel() {
@@ -35,6 +41,7 @@ class PostReview extends React.Component {
     }
 
     onFinish(values) {
+        this.toggle(true)
         const config = {
             address: this.props.location.address,
             reviews: {
@@ -47,6 +54,9 @@ class PostReview extends React.Component {
             .post(BASE_URL + '/api/review', config)
             .then(response => {
                 console.log('review sent!')
+                this.toggle(false)
+                this.handleCancel()
+                this.props.callback()
             })
             .catch(error => {
                 console.log(error)
@@ -90,7 +100,7 @@ class PostReview extends React.Component {
                         <Form.Item style={{float: "right", margin: '5px', position: "relative"}}>
                             <Button 
                                 type="primary" 
-                                htmlType="submit" 
+                                htmlType="submit"
                             >
                                     Submit
                             </Button>
@@ -104,6 +114,7 @@ class PostReview extends React.Component {
                         </Button>
                         </div>
                     </Form>
+                    <Spin spinning={this.state.loading}></Spin>
                 </Modal>
             </div>
         )
