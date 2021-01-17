@@ -4,14 +4,17 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
-var bodyparser = require('body-parser')
+
 const Location = require('./models/location')
 const Lease = require('./models/lease')
 
+const {Client} = require("@googlemaps/google-maps-services-js")
+
 app.use(express.json())
 app.use(cors())
-app.use(bodyparser.urlencoded({extended: true}))
-app.use(bodyparser.json())
+
+const client = new Client({})
+const google_url = process.env.GOOGLE_API_KEY
 
 app.get('/api/location-all', (request, response) => {
     Location.find({}, (error, docs) => {
@@ -170,14 +173,29 @@ app.get('/api/location', (request, response) => {
 
 app.post('/api/location', (request, response) => {
     const body = request.body
-    const tmpLocation = new Location ({
-        address: body.address,
-        reviews: [],
-        avg_rating: 0
-    })
-    tmpLocation.save().then(result => {
-        console.log('sent location')
-    })
+    client
+        .geocode({
+            params: {
+                address: body.address,
+                key: google_url
+            }
+        })
+        .then((r) => {
+            const tmpLocation = new Location ({
+                address: body.address,
+                reviews: [],
+                lat: r.data.results[0].geometry.location.lat,
+                long: r.data.results[0].geometry.location.lng,
+                avg_rating: 0
+            })
+            tmpLocation.save().then(result => {
+                console.log('sent location')
+            })
+        })
+        .catch((e) => {
+            console.log(e.response.data.error_message);
+            response.status(e).end()
+        })
 })
 
 app.get('/api/review', (request, response) => {
@@ -203,6 +221,7 @@ app.post('/api/review', (request, response) => {
         {
             return response.status(400).end()
         }
+
     Location.findOne({address: body.address}).then(location => 
     {
         // if location is valid and in db
@@ -228,7 +247,7 @@ app.post('/api/review', (request, response) => {
                 console.log('sent')
             })
         } 
-        else // if user sent invalid address
+        else // if user sent valid address but not database yet
         { 
             response.status(404).end()
         }

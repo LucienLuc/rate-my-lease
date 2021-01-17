@@ -19,6 +19,8 @@ const locationSchema = new mongoose.Schema({
         date: Date,
         body: String
     }],
+    lat: Number,
+    long: Number,
     avg_rating: Number
 })
 

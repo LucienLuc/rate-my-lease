@@ -4,7 +4,11 @@ import LeaseInfo from './LeaseInfo';
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
 import {GOOGLE_API_KEY} from '../Constants'
 import Item from 'antd/lib/list/Item';
+import {Button} from 'antd'
 import { render } from 'react-dom';
+
+import {GOOGLE_API_KEY} from '../Constants'
+
 
 const mapStyles = {
   width: '100%',
@@ -42,6 +46,7 @@ export class PseudoMap extends Component {
   onMouseclick(props, marker, e) {
 
   }
+
   render() {
     return (
       <div>
