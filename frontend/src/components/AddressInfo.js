@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
-import {Rate, Table, notification} from 'antd'
-import axios from "axios"
+import React from "react"
+import {Rate, notification} from 'antd'
 
 import LeaseInfo from "./LeaseInfo"
 import ReviewInfo from './ReviewInfo'
@@ -8,7 +7,6 @@ import PostReview from './PostReview'
 import PostLease from './PostLease'
 import './reviewinfo.css'
 
-import {BASE_URL} from '../Constants'
 
 
 const AddressInfo = ({location}) => {

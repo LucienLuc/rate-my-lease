@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React from "react"
 import axios from 'axios'
 
 import {Button, Form, Input, message, Select, Tooltip} from "antd"
@@ -6,7 +6,6 @@ import {HomeOutlined, SearchOutlined, StarTwoTone} from "@ant-design/icons"
 import "./search.css"
 
 import {BASE_URL} from '../Constants'
-import {GOOGLE_API_KEY} from '../Constants'
 import {Autocomplete} from "@react-google-maps/api"
 
 class Search extends React.Component {
