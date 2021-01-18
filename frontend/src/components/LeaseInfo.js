@@ -3,8 +3,6 @@ import "./leaseinfo.css"
 
 const LeaseInfo = ({leases}) => {
   leases.map(element => {
-    const date = new Date(element.date);
-    element.date = date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
     let str = '' + element.contact.phone;
     let match = str.match(/^(\d{3})(\d{3})(\d{4})$/);
     if(match){
@@ -17,11 +15,8 @@ const LeaseInfo = ({leases}) => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-    }, {
-      title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
-    }, {
+    },
+    {
       title: 'Price Listing',
       dataIndex: 'price',
       key: 'price',
