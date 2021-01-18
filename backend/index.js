@@ -47,7 +47,7 @@ app.get('/api/location', (request, response) => {
     const query = request.query
 
     // if user failed to select valid google autocompleted address from frontend 
-    if (query.valid_address === 'false') {
+    if (query.valid_address === 'false' && query.address != '') {
         response.status(400).end()
     }
     // if searching for just address

@@ -78,7 +78,6 @@ class Search extends React.Component {
                     rating: values.rating
                 }
             }
-            console.log(config)
             axios
                 .get(BASE_URL + '/api/location', config)
                 .then(response => {
