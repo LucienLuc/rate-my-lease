@@ -68,7 +68,7 @@ const AddressInfo = ({location}) => {
             
             <h2> Leases </h2>
             <p> There is no information yet. Be the first to make a lease!</p>
-            <PostLease location={location} callback={sentLease} new={true}/>
+            <PostLease location={location} callback={sentLease} new={false}/>
             <br></br>
             <h2> Reviews </h2>
             <PostReview location={location} callback={sentReview} new={false}/>
@@ -91,7 +91,7 @@ const AddressInfo = ({location}) => {
             <br></br>
             <h2> Reviews </h2>
             <p> There is no information yet. Be the first to leave a review!</p>
-            <PostReview location={location} callback={sentReview} new={true}/>
+            <PostReview location={location} callback={sentReview} new={false}/>
         </div>
         }
 
