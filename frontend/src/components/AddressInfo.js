@@ -15,7 +15,6 @@ const AddressInfo = ({location}) => {
     let isNewLocation = false
     let hasLease = true
     let hasReview = true
-    console.log(location);
 
     if(location.reviews.length === 0 && location.leases.length === 0)
     {
@@ -73,7 +72,6 @@ const AddressInfo = ({location}) => {
             <h2> Reviews </h2>
             <PostReview location={location} callback={sentReview} new={false}/>
             <>{ location.reviews.map( review => {
-                console.log(review);
                 return(
                     <ReviewInfo review = {review}/>
                 )

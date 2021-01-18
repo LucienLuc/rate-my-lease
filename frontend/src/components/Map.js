@@ -37,7 +37,7 @@ class PseudoMap extends Component {
       test: true
     })
   
-    console.log("initial default center: " +this.state.centerLat+" : "+this.state.centerLng + this.state.test)
+    // console.log("initial default center: " +this.state.centerLat+" : "+this.state.centerLng + this.state.test)
     
     this.handleClick = this.handleClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
@@ -48,8 +48,6 @@ class PseudoMap extends Component {
 
 
   handleClick(location){
-    console.log("clicked on");
-    console.log(location);
     this.setState({
       centerLat: location.lat,
       centerLng: location.long
@@ -74,7 +72,6 @@ class PseudoMap extends Component {
   }
 
   handleBarClose(){
-    console.log("closed the side bar");
     this.setState({
       messageVisible: true,
       barVisible: false,
@@ -84,7 +81,6 @@ class PseudoMap extends Component {
   }
 
   handleHoverExit(){
-    console.log('stopped hovering over');
     this.setState({
       messageVisible: false
     })
