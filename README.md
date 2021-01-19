@@ -7,6 +7,11 @@ A RateMyProfessor like website for leasing and housing in the Davis area created
 - [Pushu Zhang](https://github.com/pushuzhang)
 - [Lucien Luc](https://github.com/LucienLuc)
 
+# Features
+* Google Cloud API for markers on map
+* Users can post leases or reviews for any address
+* Query and filter addresses or leases
+
 # Set-up
 1. Clone repository
 2. Install `node_modules` in backend
@@ -19,7 +24,7 @@ A RateMyProfessor like website for leasing and housing in the Davis area created
   PORT=8000
   GOOGLE_API_KEY = {INSERT GOOGLE API KEY HERE}
   ```
-  * Replace "{INSERT MONGODB URI HERE}" with your MongoDB URI and 
+  * Replace "{INSERT MONGODB URI HERE}" with your MongoDB URI
   * Replace "{INSERT GOOGLE API KEY HERE}" with your Google Api key
 4. Install `node_modules` in frontend
   * In `/frontend/` run `npm i`
