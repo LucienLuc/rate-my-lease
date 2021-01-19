@@ -31,6 +31,14 @@ A RateMyProfessor like website for leasing and housing in the Davis area created
   ```
   * Replace "{INSERT GOOGLE API KEY HERE}" with your Google Api key
   
+# Starting the Server
+1. Start backend server
+* In `/backend/` run `npm run start`
+* Backend server should now be running on port 8000
+2. Start frontend server
+* In `/frontend/` run `npm run start`
+* Frontend server should now be running on port 3000
+
 # Dependencies
 1. MongoDB
 2. Google Cloud API
