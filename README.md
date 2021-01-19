@@ -9,6 +9,7 @@ A RateMyProfessor like website for leasing and housing in the Davis area created
 
 # Features
 * Google Cloud API for markers on map
+* MongoDB data storage
 * Users can post leases or reviews for any address
 * Query and filter addresses or leases
 
